@@ -1,0 +1,1405 @@
+
+<!doctype html>
+<html lang="ko" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Claude Code로 신규 네트워킹 기능 테스트와 워크숍 만들기 (1일 실습)">
+      
+      
+      
+        <link rel="canonical" href="https://conft2k.github.io/ws-ai-nssa-workshop/10-claude-code-basics/12-claude-md-agents-md/">
+      
+      
+        <link rel="prev" href="../11-first-session/">
+      
+      
+        <link rel="next" href="../13-settings-permissions/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>1-2. CLAUDE.md와 AGENTS.md - AI로 일하는 Networking SA</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../static/site.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-2-claudemd-agentsmd" class="md-skip">
+          콘텐츠로 이동
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="상단/헤더">
+    <a href="../.." title="AI로 일하는 Networking SA" class="md-header__button md-logo" aria-label="AI로 일하는 Networking SA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI로 일하는 Networking SA
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1-2. CLAUDE.md와 AGENTS.md
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="다크 모드"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="다크 모드" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="라이트 모드"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="라이트 모드" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="검색" placeholder="검색" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="검색">
+        
+        <button type="reset" class="md-search__icon md-icon" title="지우기" aria-label="지우기" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            검색 초기화
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="네비게이션" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AI로 일하는 Networking SA" class="md-nav__button md-logo" aria-label="AI로 일하는 Networking SA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI로 일하는 Networking SA
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI로 일하는 Networking SA — Claude Code로 신규 기능 테스트와 워크숍 만들기
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0. 환경 준비
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Claude Code 기초
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Claude Code 기초
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-first-session/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-1. 첫 세션
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-2. CLAUDE.md와 AGENTS.md
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-2. CLAUDE.md와 AGENTS.md
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        목표
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 메모리 파일의 계층
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-agentsmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. AGENTS.md와의 관계
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-claudemd-agentsmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 좋은 CLAUDE.md / AGENTS.md 쓰기
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-networking-sa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Networking SA용 예시
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-starter-kit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        미니 실습 (10분): starter kit 적용
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-settings-permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-3. 설정과 권한
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-4. 확장: Skill · Subagent · MCP · Hook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-tips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-5. 실전 팁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-mattpocock-skills/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-6. Matt Pocock skills 활용
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. 라이프사이클 개요
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-lab1-discover-plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 1. Discover & Plan — 신규 기능 조사와 테스트 계획
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-lab2-build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 2. Build — 인증서와 IaC 만들기
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-lab3-verify/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 3. Verify — 테스트 매트릭스 실행과 증적
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-lab4-troubleshoot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 4. Troubleshoot — 장애 주입과 AI 진단
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../70-lab5-workshop-authoring/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 5. Workshop authoring — AI로 워크숍 만들기
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lab 5. Workshop authoring — AI로 워크숍 만들기
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-lab5-workshop-authoring/71-plan-and-conventions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5-1. 기획과 규약
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-lab5-workshop-authoring/72-iac-and-validate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5-2. 토폴로지를 IaC로
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-lab5-workshop-authoring/73-page-and-diagram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5-3. 페이지와 구성도
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-lab5-workshop-authoring/74-rehearsal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5-4. 리허설 (선택)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../80-lab6-review-package/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 6. Review & Package
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../90-cleanup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    정리
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        목표
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 메모리 파일의 계층
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-agentsmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. AGENTS.md와의 관계
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-claudemd-agentsmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 좋은 CLAUDE.md / AGENTS.md 쓰기
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-networking-sa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Networking SA용 예시
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-starter-kit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        미니 실습 (10분): starter kit 적용
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="1-2-claudemd-agentsmd">1-2. CLAUDE.md와 AGENTS.md<a class="headerlink" href="#1-2-claudemd-agentsmd" title="Permanent link">&para;</a></h1>
+<h2 id="_1">목표<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Claude Code가 어떤 메모리 파일을 언제 읽는지 이해합니다.</li>
+<li><code>CLAUDE.md</code>와 <code>AGENTS.md</code>를 나눠 쓰는 이유를 이해합니다.</li>
+<li>starter kit을 실습 폴더에 적용하고 자기 환경에 맞게 고칩니다.</li>
+</ul>
+<h2 id="1">1. 메모리 파일의 계층<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>Claude Code는 세션을 시작할 때 아래 파일을 찾아 시스템 지시에 넣습니다. 위쪽이 넓은 범위, 아래쪽이 좁은 범위입니다.</p>
+<table>
+<thead>
+<tr>
+<th>범위</th>
+<th>위치</th>
+<th>공유</th>
+<th>넣을 내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>조직</td>
+<td>관리자가 배포하는 정책 위치</td>
+<td>조직 전체</td>
+<td>보안 정책 (참석자는 신경 쓰지 않아도 됨)</td>
+</tr>
+<tr>
+<td>개인</td>
+<td><code>~/.claude/CLAUDE.md</code></td>
+<td>나만 (모든 프로젝트)</td>
+<td>응답 언어, 개인 작업 습관. 예) "설명은 한국어로"</td>
+</tr>
+<tr>
+<td>프로젝트</td>
+<td><code>./CLAUDE.md</code> 또는 <code>./.claude/CLAUDE.md</code></td>
+<td>git으로 팀 공유</td>
+<td>리전·태그·검증 규칙, 폴더 구조</td>
+</tr>
+<tr>
+<td>하위 폴더</td>
+<td><code>./infra/CLAUDE.md</code> 등</td>
+<td>git으로 팀 공유</td>
+<td>그 폴더 파일을 다룰 때만 필요한 규칙. 해당 폴더를 읽을 때 불러옴</td>
+</tr>
+<tr>
+<td>자동 메모리</td>
+<td><code>~/.claude/projects/&lt;프로젝트&gt;/memory/</code></td>
+<td>나만</td>
+<td>Claude가 작업하며 배운 것을 스스로 기록. <code>/memory</code>로 확인·삭제</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong><code>@경로</code> import</strong>: <code>CLAUDE.md</code> 안에 <code>@AGENTS.md</code>, <code>@docs/conventions.md</code>처럼 쓰면 그 파일 내용을 함께 불러옵니다.</li>
+<li><strong><code>/init</code></strong>: 현재 폴더를 분석해 <code>CLAUDE.md</code> 초안을 만듭니다. 기존 저장소에 처음 들어갈 때 유용하지만, 결과는 반드시 직접 다듬습니다.</li>
+<li><strong><code>/memory</code></strong>: 지금 적용 중인 메모리 파일 목록을 보고 편집기로 엽니다.</li>
+</ul>
+<h2 id="2-agentsmd">2. AGENTS.md와의 관계<a class="headerlink" href="#2-agentsmd" title="Permanent link">&para;</a></h2>
+<p><code>AGENTS.md</code>는 여러 코딩 에이전트(Codex CLI 등)가 공통으로 읽는 프로젝트 지시 파일입니다. Claude Code는 <code>CLAUDE.md</code>를 읽으므로, 다음처럼 <strong>내용은 <code>AGENTS.md</code>에 쓰고 <code>CLAUDE.md</code>는 한 줄로 가져옵니다.</strong></p>
+<div class="highlight"><pre><span></span><code><span class="ni">@AGENTS</span>.md
+</code></pre></div>
+<p>이렇게 하면 Lab 6에서 Codex로 교차 리뷰할 때도 같은 규칙이 적용됩니다. Claude Code에만 해당하는 내용(예: skill 이름)만 <code>CLAUDE.md</code>에 덧붙입니다.</p>
+<h2 id="3-claudemd-agentsmd">3. 좋은 CLAUDE.md / AGENTS.md 쓰기<a class="headerlink" href="#3-claudemd-agentsmd" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>원칙</th>
+<th>나쁜 예</th>
+<th>좋은 예</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>확인할 수 있게</td>
+<td>"조심해서 작업해"</td>
+<td>"<code>delete-*</code> 실행 전에 대상 목록을 보여 주고 확인받는다"</td>
+</tr>
+<tr>
+<td>이유를 함께</td>
+<td>"리전을 붙여라"</td>
+<td>"aws CLI에 <code>--region ap-northeast-2</code>를 붙인다. <code>AWS_REGION</code>은 Bedrock용 us-east-1이 상속되기 때문"</td>
+</tr>
+<tr>
+<td>짧게</td>
+<td>서비스 설명 수십 줄</td>
+<td>규칙과 경로만. 긴 지식은 skill이나 <code>docs/</code>로 빼고 링크</td>
+</tr>
+<tr>
+<td>모델이 모르는 것만</td>
+<td>"VPC는 가상 네트워크다"</td>
+<td>"이 계정은 <code>10.0.0.0/8</code>을 온프레미스가 쓰므로 VPC는 <code>172.16.0.0/12</code>에서 할당"</td>
+</tr>
+<tr>
+<td>금지와 대안을 같이</td>
+<td>"프로덕션 금지"</td>
+<td>"프로필 <code>prod*</code>는 쓰지 않는다. 실습은 <code>--profile lab</code>"</td>
+</tr>
+<tr>
+<td>출처 요구</td>
+<td>—</td>
+<td>"신규 기능 동작은 AWS 문서로 확인한 것만 쓰고 URL을 남긴다"</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>메모리 파일은 매 세션 컨텍스트를 차지합니다. 200줄을 넘기 시작하면 skill(필요할 때만 로드)이나 하위 폴더 <code>CLAUDE.md</code>로 나눕니다.</p>
+</div>
+<h2 id="4-networking-sa">4. Networking SA용 예시<a class="headerlink" href="#4-networking-sa" title="Permanent link">&para;</a></h2>
+<p>starter kit의 <code>AGENTS.md</code>(요약):</p>
+<div class="highlight"><pre><span></span><code><span class="gh"># &lt;프로젝트 이름&gt; — 신규 기능 테스트 / 워크숍 저장소</span>
+
+<span class="gu">## 환경</span>
+<span class="k">-</span><span class="w"> </span>실습 리전: ap-northeast-2. aws CLI·CloudFormation 명령에는 항상 --region ap-northeast-2를 붙인다.
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>이유: Claude Code가 Bedrock용 AWS_REGION=us-east-1을 쓰고, 이 값이 aws CLI에도 상속된다.
+<span class="k">-</span><span class="w"> </span>모든 리소스에 태그 Project=ws-ai-nssa, Owner=&lt;이름&gt;. 스택 이름 접두어 ws-ai-nssa-.
+
+<span class="gu">## 작업 규칙</span>
+<span class="k">-</span><span class="w"> </span>신규 기능의 동작·파라미터·CFN 속성은 AWS 문서로 확인한 것만 쓴다. 못 하면 TODO(확인 필요).
+<span class="k">-</span><span class="w"> </span>큰 작업은 plan mode로 계획을 먼저 보여 준다.
+<span class="k">-</span><span class="w"> </span>삭제 명령 전에는 대상 목록을 보여 주고 확인받는다.
+
+<span class="gu">## 검증</span>
+<span class="k">-</span><span class="w"> </span>cfn-lint 통과 후 배포. 테스트 결과는 기대값/실제값/명령 출력을 results.md에 남긴다.
+</code></pre></div>
+<h2 id="10-starter-kit">미니 실습 (10분): starter kit 적용<a class="headerlink" href="#10-starter-kit" title="Permanent link">&para;</a></h2>
+<ol>
+<li>starter kit을 실습 폴더에 복사합니다(숨김 파일 포함).</li>
+</ol>
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-r<span class="w"> </span>~/starter-kit/.<span class="w"> </span>~/ws-lab/<span class="w">   </span><span class="c1"># 0. 환경 준비에서 풀어 둔 starter kit</span>
+<span class="nb">cd</span><span class="w"> </span>~/ws-lab<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>init<span class="w"> </span>-q<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>ls<span class="w"> </span>-la<span class="w"> </span>.<span class="w"> </span>.claude
+</code></pre></div>
+<ol>
+<li>Claude Code를 다시 시작하고(<code>/exit</code> 후 <code>claude</code>) 입력:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>지금 적용된 프로젝트 규칙을 다섯 줄로 요약해 줘. 그리고 AGENTS.md의 &lt;...&gt; 자리표시자를 찾아서 나에게 값을 물어본 뒤 채워 줘.
+</code></pre></div>
+<ol>
+<li><code>/memory</code>를 실행해 개인(<code>~/.claude/CLAUDE.md</code>)·프로젝트 메모리가 어떻게 잡혀 있는지 확인합니다.</li>
+<li>개인 메모리에 응답 언어 규칙을 넣습니다.</li>
+</ol>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.claude<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'# 개인 지침\n- 설명은 한국어로. 코드·명령·에러 원문은 그대로 둔다.\n'</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.claude/CLAUDE.md
+</code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">검증 체크포인트</p>
+<p>새 세션에서 아래를 입력해 규칙이 실제로 적용되는지 확인합니다.</p>
+<div class="highlight"><pre><span></span><code>내 계정의 VPC 목록을 보여 줘.
+</code></pre></div>
+<p>실행된 명령에 <code>--region ap-northeast-2</code>가 <strong>사용자가 말하지 않아도</strong> 붙어 있으면 성공입니다.</p>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  맨위로
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="하단/푸터" >
+        
+          
+          <a href="../11-first-session/" class="md-footer__link md-footer__link--prev" aria-label="이전: 1-1. 첫 세션">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                이전
+              </span>
+              <div class="md-ellipsis">
+                1-1. 첫 세션
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../13-settings-permissions/" class="md-footer__link md-footer__link--next" aria-label="다음: 1-3. 설정과 권한">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                다음
+              </span>
+              <div class="md-ellipsis">
+                1-3. 설정과 권한
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.indexes", "navigation.footer", "navigation.top", "content.code.copy", "content.tabs.link", "search.highlight"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac\ub428", "clipboard.copy": "\ud074\ub9bd\ubcf4\ub4dc\ub85c \ubcf5\uc0ac", "search.result.more.one": "\uc774 \ubb38\uc11c\uc5d0\uc11c 1\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.more.other": "\uc774 \ubb38\uc11c\uc5d0\uc11c #\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.none": "\uac80\uc0c9\uc5b4\uc640 \uc77c\uce58\ud558\ub294 \ubb38\uc11c\uac00 \uc5c6\uc2b5\ub2c8\ub2e4", "search.result.one": "1\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.other": "#\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.placeholder": "\uac80\uc0c9\uc5b4\ub97c \uc785\ub825\ud558\uc138\uc694", "search.result.term.missing": "\ud3ec\ud568\ub418\uc9c0 \uc54a\uc740 \uac80\uc0c9\uc5b4", "select.version": "\ubc84\uc804 \uc120\ud0dd"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

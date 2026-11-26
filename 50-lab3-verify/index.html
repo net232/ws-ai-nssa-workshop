@@ -1,0 +1,1637 @@
+
+<!doctype html>
+<html lang="ko" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Claude Code로 신규 네트워킹 기능 테스트와 워크숍 만들기 (1일 실습)">
+      
+      
+      
+        <link rel="canonical" href="https://conft2k.github.io/ws-ai-nssa-workshop/50-lab3-verify/">
+      
+      
+        <link rel="prev" href="../40-lab2-build/">
+      
+      
+        <link rel="next" href="../60-lab4-troubleshoot/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>Lab 3. Verify — 테스트 매트릭스 실행과 증적 - AI로 일하는 Networking SA</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../static/site.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lab-3-verify" class="md-skip">
+          콘텐츠로 이동
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="상단/헤더">
+    <a href=".." title="AI로 일하는 Networking SA" class="md-header__button md-logo" aria-label="AI로 일하는 Networking SA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI로 일하는 Networking SA
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab 3. Verify — 테스트 매트릭스 실행과 증적
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="다크 모드"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="다크 모드" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="라이트 모드"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="라이트 모드" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="검색" placeholder="검색" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="검색">
+        
+        <button type="reset" class="md-search__icon md-icon" title="지우기" aria-label="지우기" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            검색 초기화
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="네비게이션" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AI로 일하는 Networking SA" class="md-nav__button md-logo" aria-label="AI로 일하는 Networking SA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI로 일하는 Networking SA
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI로 일하는 Networking SA — Claude Code로 신규 기능 테스트와 워크숍 만들기
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0. 환경 준비
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../10-claude-code-basics/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Claude Code 기초
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Claude Code 기초
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-claude-code-basics/11-first-session/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-1. 첫 세션
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-claude-code-basics/12-claude-md-agents-md/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-2. CLAUDE.md와 AGENTS.md
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-claude-code-basics/13-settings-permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-3. 설정과 권한
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-claude-code-basics/14-extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-4. 확장: Skill · Subagent · MCP · Hook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-claude-code-basics/15-tips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-5. 실전 팁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-claude-code-basics/16-mattpocock-skills/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-6. Matt Pocock skills 활용
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20-lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. 라이프사이클 개요
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../30-lab1-discover-plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 1. Discover & Plan — 신규 기능 조사와 테스트 계획
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../40-lab2-build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 2. Build — 인증서와 IaC 만들기
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 3. Verify — 테스트 매트릭스 실행과 증적
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 3. Verify — 테스트 매트릭스 실행과 증적
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        목표
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        라이프사이클에서의 위치
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-claude" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1단계. Claude가 클라이언트에서 테스트를 돌릴 수 있게 하기
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-identity-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2단계. identity filter 적용과 비교
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-access-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3단계. access log로 사유 확인
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4단계. 메트릭과 "확인 필요" 닫기
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5단계. 결과 보고서
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5단계. 결과 보고서">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        검증 체크포인트 — 요약을 믿어도 되는가
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        정답 예시
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        정리와 팁
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../60-lab4-troubleshoot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 4. Troubleshoot — 장애 주입과 AI 진단
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../70-lab5-workshop-authoring/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 5. Workshop authoring — AI로 워크숍 만들기
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lab 5. Workshop authoring — AI로 워크숍 만들기
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../70-lab5-workshop-authoring/71-plan-and-conventions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5-1. 기획과 규약
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../70-lab5-workshop-authoring/72-iac-and-validate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5-2. 토폴로지를 IaC로
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../70-lab5-workshop-authoring/73-page-and-diagram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5-3. 페이지와 구성도
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../70-lab5-workshop-authoring/74-rehearsal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5-4. 리허설 (선택)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../80-lab6-review-package/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 6. Review & Package
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../90-cleanup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    정리
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        목표
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        라이프사이클에서의 위치
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-claude" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1단계. Claude가 클라이언트에서 테스트를 돌릴 수 있게 하기
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-identity-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2단계. identity filter 적용과 비교
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-access-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3단계. access log로 사유 확인
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4단계. 메트릭과 "확인 필요" 닫기
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5단계. 결과 보고서
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5단계. 결과 보고서">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        검증 체크포인트 — 요약을 믿어도 되는가
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        정답 예시
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        정리와 팁
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="lab-3-verify">Lab 3. Verify — 테스트 매트릭스 실행과 증적<a class="headerlink" href="#lab-3-verify" title="Permanent link">&para;</a></h1>
+<p>환경이 준비되었습니다. 이제 <code>test-plan.md</code>의 매트릭스를 실제 NLB에 대고 돌립니다. 이 Lab의 핵심은 <strong>"Claude가 성공했다고 말했다"가 아니라 "증적이 기대값과 같다"</strong> 로 결론을 내리는 것입니다.</p>
+<h2 id="_1">목표<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>클라이언트 EC2에서 테스트 매트릭스를 실행합니다. Claude Code가 SSM Run Command로 직접 돌리게 합니다.</li>
+<li>identity filter를 CLI로 적용하고, 필터 전후 결과를 비교합니다.</li>
+<li>NLB access log의 <code>tls_verify_status</code>로 거부 사유를 확인합니다.</li>
+<li>기대값·실제값·근거가 들어간 <code>results.md</code>를 만들고, Lab 1의 "확인 필요" 항목을 닫습니다.</li>
+</ul>
+<h2 id="_2">라이프사이클에서의 위치<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>단계</th>
+<th>이 Lab에서 AI가 하는 일</th>
+<th>사람이 판단할 일</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4 Verify 검증</td>
+<td>테스트 실행, 로그 수집·파싱, 결과 표 정리</td>
+<td>기대와 다른 결과의 원인 분류, 원본 증적과 요약 대조</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="NLB mTLS 테스트 매트릭스 흐름" src="../static/images/flow-mtls-test-matrix.svg" /></p>
+<p>그림은 각 인증서가 NLB의 세 검사(신뢰 체인 → identity filter → CRL) 중 어디에서 걸리는지 보여 줍니다. 이 그림이 곧 <strong>기대값</strong>입니다. Lab 3이 끝나면 이 그림이 실제와 같은지 증적으로 말할 수 있어야 합니다.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>산출물: <code>~/ws-lab/scripts/run-on-client.sh</code>, <code>scripts/apply-filters.sh</code>, <code>scripts/fetch-logs.sh</code>, <code>~/ws-lab/results.md</code></p>
+</div>
+<hr />
+<h2 id="1-claude">1단계. Claude가 클라이언트에서 테스트를 돌릴 수 있게 하기<a class="headerlink" href="#1-claude" title="Permanent link">&para;</a></h2>
+<p>클라이언트 EC2는 private subnet에 있고 SSH가 없습니다. Session Manager로 직접 들어가도 되지만, Claude Code가 명령을 보내고 출력을 받으려면 <strong>SSM Run Command</strong> 가 편합니다.</p>
+<p>Claude Code에 입력:</p>
+<div class="highlight"><pre><span></span><code>scripts/run-on-client.sh를 만들어 줘.
+- 사용법: scripts/run-on-client.sh &lt;로컬 스크립트&gt; [VAR=value ...]
+- 스택 ws-ai-nssa-nlb-mtls 출력의 ClientInstanceId로 AWS-RunShellScript를 보내고, 스크립트는 base64로 실어 보내.
+- 원격에서는 /etc/profile.d/lab.sh(NLB_DNS 등)를 source한 뒤 실행.
+- 완료될 때까지 기다렸다가(시간 초과 있음) stdout/stderr, Status, ResponseCode를 출력.
+- Status가 Success가 아니거나 시간 초과면 0이 아닌 코드로 끝내(원격 ResponseCode를 그대로 돌려줘). 그래야 실패가 호출자에게 보여.
+- 모든 aws 명령에 --region "${LAB_REGION:-ap-northeast-2}", 공통 값은 scripts/lib.sh 사용.
+만든 뒤 scripts/test-matrix.sh를 PHASE=base로 실행해 줘.
+</code></pre></div>
+<p>기대하는 결과(필터 없음):</p>
+<table>
+<thead>
+<tr>
+<th>case</th>
+<th>port</th>
+<th>기대</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>valid, no-eku, ou-staging, uri-only</td>
+<td>443</td>
+<td>ACCEPT</td>
+</tr>
+<tr>
+<td>no-cert, other-ca, revoked, eku-serverAuth, expired</td>
+<td>443</td>
+<td>REJECT</td>
+</tr>
+<tr>
+<td>plain:no-cert, plain:other-ca</td>
+<td>8443</td>
+<td>ACCEPT</td>
+</tr>
+</tbody>
+</table>
+<p><code>ERROR</code> 행이 하나라도 있으면 테스트가 성립하지 않은 것입니다(인증서 파일 없음, DNS·연결 실패, 시간 초과 등). 결과를 해석하기 전에 원인부터 고칩니다.</p>
+<p>거부된 케이스의 curl 오류는 <strong>35 또는 56</strong>입니다. 리허설(클라이언트 <code>curl 8.21.0</code>, <code>OpenSSL 3.5.8</code>)에서 나온 메시지는 <code>(56) Send failure: Connection reset by peer</code>, <code>(35) Recv failure: Connection reset by peer</code>, <code>(56) OpenSSL SSL_read: ... bad record type</code> 세 가지였습니다. TLS 1.3에서는 클라이언트가 자기 쪽 핸드셰이크를 끝낸 뒤 NLB가 인증서를 거부하기 때문에(NLB mTLS 블로그), 같은 케이스도 실행할 때마다 35와 56이 바뀝니다. 그래서 판정은 HTTP 200 여부로 합니다.</p>
+<p>리허설 결과(2026-11-26): <code>PHASE=base</code> <strong>PASS 11 / FAIL 0</strong>. 실제 출력은 <code>~/ws-solutions/nlb-mtls/rehearsal.md</code>에 있습니다.</p>
+<details class="note">
+<summary>직접 들어가서 한 줄씩 해 보기 (Session Manager)</summary>
+<div class="highlight"><pre><span></span><code><span class="nv">R</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">LAB_REGION</span><span class="k">:-</span><span class="nv">ap</span><span class="p">-northeast-2</span><span class="si">}</span><span class="s2">"</span>
+<span class="nv">IID</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>cloudformation<span class="w"> </span>describe-stacks<span class="w"> </span>--region<span class="w"> </span><span class="s2">"</span><span class="nv">$R</span><span class="s2">"</span><span class="w"> </span>--stack-name<span class="w"> </span>ws-ai-nssa-nlb-mtls<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--query<span class="w"> </span><span class="s2">"Stacks[0].Outputs[?OutputKey=='ClientInstanceId'].OutputValue"</span><span class="w"> </span>--output<span class="w"> </span>text<span class="k">)</span>
+aws<span class="w"> </span>ssm<span class="w"> </span>start-session<span class="w"> </span>--region<span class="w"> </span><span class="s2">"</span><span class="nv">$R</span><span class="s2">"</span><span class="w"> </span>--target<span class="w"> </span><span class="s2">"</span><span class="nv">$IID</span><span class="s2">"</span>
+</code></pre></div>
+<p>클라이언트 안에서(인증서는 root 전용 폴더 <code>/opt/lab/certs</code>에 있으므로 <code>sudo -i</code> 먼저):</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>-i
+<span class="nb">source</span><span class="w"> </span>/etc/profile.d/lab.sh<span class="p">;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/opt/lab/certs
+<span class="c1"># 정상</span>
+curl<span class="w"> </span>-sS<span class="w"> </span>--cacert<span class="w"> </span>lab-root-ca.pem<span class="w"> </span>--cert<span class="w"> </span>client-valid.pem<span class="w"> </span>--key<span class="w"> </span>client-valid.key<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--connect-to<span class="w"> </span>mtls.lab.internal:443:<span class="nv">$NLB_DNS</span>:443<span class="w"> </span>https://mtls.lab.internal/
+<span class="c1"># 핸드셰이크를 자세히: 서버가 보낸 CertificateRequest, acceptable CA names</span>
+openssl<span class="w"> </span>s_client<span class="w"> </span>-connect<span class="w"> </span><span class="nv">$NLB_DNS</span>:443<span class="w"> </span>-servername<span class="w"> </span>mtls.lab.internal<span class="w"> </span>-CAfile<span class="w"> </span>lab-root-ca.pem<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-cert<span class="w"> </span>client-other-ca.pem<span class="w"> </span>-key<span class="w"> </span>client-other-ca.key<span class="w"> </span>-tls1_3<span class="w"> </span>&lt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-40
+</code></pre></div>
+</details>
+<h2 id="2-identity-filter">2단계. identity filter 적용과 비교<a class="headerlink" href="#2-identity-filter" title="Permanent link">&para;</a></h2>
+<p>Lab 2에서 필터를 템플릿에 넣지 않았습니다. CLI로 적용합니다.</p>
+<p>Claude Code에 입력:</p>
+<div class="highlight"><pre><span></span><code>scripts/apply-filters.sh를 만들어 줘. 사용법 on | off | show.
+on이면 443 리스너에 client certificate identity filter 두 개를 OR로 적용해:
+  subject-ou exact "Production", san-uri prefix "spiffe://lab.internal/ns/prod/"
+필드·매치 값은 research.md(API 표기: subject-ou, san-uri, exact, prefix, action accept)를 따르고, Mode와 TrustStoreArn도 같이 보내.
+off는 필터 목록을 빈 배열로, show는 describe-listeners의 MutualAuthentication.
+on을 적용하고 show로 확인한 다음 test-matrix.sh를 PHASE=filter로 실행해 줘.
+</code></pre></div>
+<p>필터 적용 후 달라지는 케이스는 하나(ou-staging)입니다. uri-only가 계속 통과하는지가 OR 동작의 증거입니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>필터는 바로 반영되지 않습니다.</strong> <code>modify-listener</code>와 <code>describe-listeners</code>는 바로 새 필터를 돌려주지만, 리허설에서는 실제 연결에 반영되기까지 약 2분 16초 걸렸습니다. 적용 직후 4번 돌린 매트릭스는 모두 ou-staging이 ACCEPT로 남아 <code>PASS 10 / FAIL 1</code>이었습니다. 필터를 바꾼 뒤에는 <strong>3분 기다린 다음</strong> <code>PHASE=filter</code>를 실행합니다. Claude가 이 FAIL을 "필터가 동작하지 않는다"로 결론 내리면, 시간을 두고 다시 돌려 보게 하세요.</p>
+</div>
+<p>리허설 결과: 반영 뒤 <code>PHASE=filter</code> <strong>PASS 11 / FAIL 0</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>case</th>
+<th>필터 전</th>
+<th>필터 후</th>
+<th>이유</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ou-staging</td>
+<td>ACCEPT</td>
+<td><strong>REJECT</strong></td>
+<td>OU=Staging, SAN.URI도 <code>/ns/stg/</code> → 어떤 필터와도 안 맞음</td>
+</tr>
+<tr>
+<td>valid</td>
+<td>ACCEPT</td>
+<td>ACCEPT</td>
+<td>OU=Production (두 필터 모두 일치)</td>
+</tr>
+<tr>
+<td>no-eku</td>
+<td>ACCEPT</td>
+<td>ACCEPT</td>
+<td>OU=Production (SAN.URI는 없지만 OR)</td>
+</tr>
+<tr>
+<td>uri-only</td>
+<td>ACCEPT</td>
+<td>ACCEPT</td>
+<td>OU=Engineering으로 OU 필터는 불일치, SAN.URI <code>…/ns/prod/sa/payments</code>가 prefix 필터와 일치 → <strong>OR 동작 확인</strong></td>
+</tr>
+<tr>
+<td>revoked</td>
+<td>REJECT</td>
+<td>REJECT</td>
+<td>필터는 통과, 그다음 CRL에서 거부</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code>aws elbv2 modify-listener</code>가 <code>ClientCertificateIdentityFilters</code>를 모른다는 오류를 내면 AWS CLI가 오래된 것입니다. <strong>AWS CLI v2 2.41.2 이상</strong>이 필요합니다(CLI CHANGELOG의 elbv2 NLB mTLS 항목. 리허설은 2.42.4로 확인, 2.38.0에는 없음). <code>aws --version</code>과 <code>aws elbv2 modify-listener help | grep ClientCertificateIdentityFilters</code>로 확인하고 업데이트하세요.</p>
+</div>
+<h2 id="3-access-log">3단계. access log로 사유 확인<a class="headerlink" href="#3-access-log" title="Permanent link">&para;</a></h2>
+<p>NLB는 노드별로 <strong>5분마다</strong> access log를 S3에 씁니다. 1–2단계를 끝내고 5–10분 기다린 뒤 수집합니다. 기다리는 동안 4단계의 메트릭을 먼저 봐도 됩니다.</p>
+<p>Claude Code에 입력:</p>
+<div class="highlight"><pre><span></span><code>scripts/fetch-logs.sh를 만들어 줘. 스택의 LogsBucketName에서 nlb/AWSLogs/ 아래 로그를 ~/ws-lab/logs/raw로 sync하고,
+최근 N분(기본 30) 항목에서 time, listener, client, tls_verify_status, leaf_client_cert_subject, leaf_client_cert_serial_number만 뽑아 Markdown 표로.
+필드 순서는 NLB access log 문서의 필드 표를 그대로 따르고(따옴표로 묶인 subject 주의), 문서의 예시 로그 줄로 파서를 먼저 테스트해.
+그다음 실제로 실행해서 test-matrix 케이스와 로그 행을 짝지어 줘. 거부된 행은 subject·serial이 "-"일 수 있으니 시각·포트·실행 순서로 짝짓고, 어떤 기준으로 짝지었는지 적어.
+</code></pre></div>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 거부 케이스마다 <code>Failed:&lt;코드&gt;</code>가 test-plan의 기대 코드와 같다.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 8443(mTLS off) 행은 <code>leaf_client_cert_subject</code>가 <code>-</code>다. <code>tls_verify_status</code>는 <code>Success</code>로 찍힙니다(리허설 확인).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>인증서 없음</strong> 케이스의 실제 코드를 확인해 "확인 필요"를 닫았다. 리허설에서는 <code>Failed:ClientCertMissing</code>이었습니다.</li>
+</ul>
+<p>리허설에서 본 로그의 특징입니다. Claude가 이와 다르게 요약하면 원본 행을 보여 달라고 하세요.</p>
+<table>
+<thead>
+<tr>
+<th>케이스</th>
+<th><code>tls_verify_status</code></th>
+<th>subject / serial</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>valid, no-eku, uri-only</td>
+<td><code>Success</code></td>
+<td>인증서 subject / 1001, 1006, 1003</td>
+</tr>
+<tr>
+<td>no-cert</td>
+<td><code>Failed:ClientCertMissing</code></td>
+<td><code>-</code> / <code>-</code></td>
+</tr>
+<tr>
+<td>other-ca</td>
+<td><code>Failed:ClientCertUntrusted</code></td>
+<td><code>-</code> / <code>-</code></td>
+</tr>
+<tr>
+<td>revoked</td>
+<td><code>Failed:ClientCertCrlHit</code></td>
+<td><code>-</code> / <code>-</code></td>
+</tr>
+<tr>
+<td>eku-serverAuth</td>
+<td><code>Failed:ClientCertPurposeInvalid</code></td>
+<td><code>-</code> / <code>-</code></td>
+</tr>
+<tr>
+<td>expired</td>
+<td><code>Failed:ClientCertExpired</code></td>
+<td><code>-</code> / <code>-</code></td>
+</tr>
+<tr>
+<td>ou-staging (필터 후)</td>
+<td><code>Failed:CertificateFilterNoMatch</code></td>
+<td><code>-</code> / <code>-</code></td>
+</tr>
+<tr>
+<td>8443</td>
+<td><code>Success</code></td>
+<td><code>-</code> / <code>-</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>거부된 연결은 subject와 serial이 남지 않습니다.</strong> "serial로 짝지었다"는 요약이 나오면 틀린 것입니다.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>파서를 만들 때 Claude에게 "문서의 예시 로그로 먼저 테스트하라"고 시킨 이유가 있습니다. 필드가 26개이고 subject에 공백과 쉼표가 들어 있어, 인덱스를 한 칸씩 잘못 세는 실수가 흔합니다. 이 워크숍의 정답 스크립트도 처음에는 한 칸 틀렸고, 문서 예시로 테스트해서 찾았습니다.</p>
+</div>
+<h2 id="4">4단계. 메트릭과 "확인 필요" 닫기<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<p>블로그에는 mTLS 전용 CloudWatch 메트릭이 있다고 하지만, 메트릭 문서에는 이름이 없었습니다(Lab 1). AI에게 이름을 묻지 말고 <strong>실제 계정에서 확인</strong>합니다.</p>
+<p>리허설(2026-11-26, 배포 후 약 30분)에서는 이름에 <code>Cert</code>, <code>Mutual</code>, <code>mTLS</code>, <code>Handshake</code>가 들어간 지표가 하나도 없었습니다. mTLS 거부는 <code>ClientTLSNegotiationErrorCount</code>에 함께 세어졌습니다(매트릭스·장애 실습 뒤 Sum 115). TLS 관련 지표는 그 밖에 <code>TargetTLSNegotiationErrorCount</code>, <code>NewFlowCount_TLS</code>, <code>ActiveFlowCount_TLS</code>, <code>ProcessedBytes_TLS</code>, <code>ConsumedLCUs_TLS</code>였습니다. Claude가 블로그 문구를 근거로 지표 이름을 만들어 내는지 지켜보세요.</p>
+<p>Claude Code에 입력:</p>
+<div class="highlight"><pre><span></span><code>AWS/NetworkELB 네임스페이스에서 우리 NLB(LoadBalancer 차원)에 실제로 발행된 메트릭 이름을 list-metrics로 모두 보여 주고,
+mTLS·TLS·클라이언트 인증서와 관련 있어 보이는 것만 골라 최근 1시간 Sum을 get-metric-statistics로 보여 줘. 이름을 추측하지 마.
+</code></pre></div>
+<details class="note">
+<summary>선택: CloudFormation이 identity filter를 받아 주는지 change set으로 확인</summary>
+<p>배포하지 않고 CloudFormation의 판단만 받아 볼 수 있습니다.</p>
+<p>Claude Code에 입력:</p>
+<div class="highlight"><pre><span></span><code>/tmp/filters.yaml을 infra/nlb-mtls.yaml에서 복사해서 443 리스너 MutualAuthentication에 ClientCertificateIdentityFilters(apply-filters.sh와 같은 두 개)를 넣고,
+스택 ws-ai-nssa-nlb-mtls에 대해 change set ws-ai-nssa-filter-check를 만들어서(기존 파라미터 재사용) 상태와 StatusReason만 보여 줘.
+실행(execute)하지 말고, 확인이 끝나면 change set을 지워.
+</code></pre></div>
+<p>결과(받아 줌 / 템플릿 오류 / 실행 단계에서만 알 수 있음)를 <code>results.md</code>의 "확인 필요" 표에 적습니다.</p>
+<p>리허설 결과: change set은 <code>CREATE_COMPLETE</code>(MtlsListener <code>Modify</code>, Replacement <code>False</code>)였습니다. 하지만 CloudFormation 레지스트리 스키마(<code>aws cloudformation describe-type --type RESOURCE --type-name AWS::ElasticLoadBalancingV2::Listener</code>)의 <code>MutualAuthentication</code>에는 이 속성이 없고 <code>additionalProperties</code>가 <code>false</code>입니다. <strong>change set을 만들 수 있다고 해서 실행이 성공한다는 뜻은 아닙니다.</strong> 그래서 "실행 단계에서만 알 수 있음"으로 적습니다. 정답 템플릿이 필터를 CLI로 적용하는 이유가 여기에 있습니다.</p>
+</details>
+<details class="note">
+<summary>선택: 만료 인증서 허용 (T11)</summary>
+<div class="highlight"><pre><span></span><code><span class="nv">R</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">LAB_REGION</span><span class="k">:-</span><span class="nv">ap</span><span class="p">-northeast-2</span><span class="si">}</span><span class="s2">"</span>
+<span class="nv">L</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>cloudformation<span class="w"> </span>describe-stacks<span class="w"> </span>--region<span class="w"> </span><span class="s2">"</span><span class="nv">$R</span><span class="s2">"</span><span class="w"> </span>--stack-name<span class="w"> </span>ws-ai-nssa-nlb-mtls<span class="w"> </span>--query<span class="w"> </span><span class="s2">"Stacks[0].Outputs[?OutputKey=='MtlsListenerArn'].OutputValue"</span><span class="w"> </span>--output<span class="w"> </span>text<span class="k">)</span>
+<span class="nv">TS</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>cloudformation<span class="w"> </span>describe-stacks<span class="w"> </span>--region<span class="w"> </span><span class="s2">"</span><span class="nv">$R</span><span class="s2">"</span><span class="w"> </span>--stack-name<span class="w"> </span>ws-ai-nssa-nlb-mtls<span class="w"> </span>--query<span class="w"> </span><span class="s2">"Stacks[0].Outputs[?OutputKey=='TrustStoreArn'].OutputValue"</span><span class="w"> </span>--output<span class="w"> </span>text<span class="k">)</span>
+aws<span class="w"> </span>elbv2<span class="w"> </span>modify-listener<span class="w"> </span>--region<span class="w"> </span><span class="s2">"</span><span class="nv">$R</span><span class="s2">"</span><span class="w"> </span>--listener-arn<span class="w"> </span><span class="s2">"</span><span class="nv">$L</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--mutual-authentication<span class="w"> </span><span class="s2">"Mode=verify,TrustStoreArn=</span><span class="nv">$TS</span><span class="s2">,IgnoreClientCertificateExpiry=true"</span>
+</code></pre></div>
+<p>expired 케이스가 ACCEPT로 바뀌는지 확인한 뒤 <code>IgnoreClientCertificateExpiry=false</code>로 되돌립니다. 이 명령은 필터 목록을 보내지 않습니다. 필터가 유지되는지, 지워지는지도 <code>apply-filters.sh show</code>로 확인해 보세요. 이런 동작은 문서보다 실제 결과가 더 정확한 근거가 됩니다.</p>
+<p>리허설 결과: 필터를 보내지 않아도 <strong>기존 필터 2개가 유지</strong>되었습니다. 반영까지는 켤 때 약 55초, 끌 때 약 62초 걸렸습니다.</p>
+<p>이 변경은 CloudFormation 밖에서 한 것이므로 스택에 드리프트가 생깁니다. 끝나면 원래 값으로 돌려놓으세요.</p>
+</details>
+<h2 id="5">5단계. 결과 보고서<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<p>Claude Code에 입력:</p>
+<div class="highlight"><pre><span></span><code>지금까지 실행한 명령 출력만 근거로 results.md를 써 줘. ~/ws-solutions/nlb-mtls/results-template.md의 구조를 따라도 돼.
+- 매트릭스 표 두 개(PHASE=base, PHASE=filter)는 test-matrix.sh 출력을 그대로 붙여.
+- access log 표와 케이스별 기대/실제 tls_verify_status 대조
+- 기대와 다른 결과가 있으면 원인을 "문서/설정/테스트" 중 하나로 분류하고 근거를 적어.
+- Lab 1의 "확인 필요" 항목마다 결과를 적고, 확인하지 못했으면 이유를 적어.
+- 출력에 없는 숫자나 문장은 만들지 마.
+</code></pre></div>
+<h3 id="_3">검증 체크포인트 — 요약을 믿어도 되는가<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>AI 요약에서 가장 흔한 오류는 <strong>원본에 없는 내용이 매끄럽게 들어가는 것</strong>입니다.</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>results.md</code>의 표 두 행을 골라, <code>~/ws-lab/logs/mtls-log-summary.md</code>와 test-matrix 원본 출력에서 같은 값을 직접 찾았다.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> "모두 성공" 같은 결론 문장 옆에 PASS/FAIL 개수가 있다.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 기대와 다른 결과가 0개라면, 일부러 하나를 틀리게 만들어(예: test-matrix.sh 기대값 하나 수정) 표가 ❌를 정말 표시하는지 확인했다. <strong>실패를 잡지 못하는 테스트는 테스트가 아닙니다.</strong></li>
+</ul>
+<h2 id="_4">정답 예시<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>~/ws-solutions/nlb-mtls/scripts/run-on-client.sh</code>, <code>apply-filters.sh</code>, <code>fetch-logs.sh</code>, <code>test-matrix.sh</code></li>
+<li><code>~/ws-solutions/nlb-mtls/results-template.md</code> (결과 틀. 실제 값은 직접 실행한 출력으로만 채웁니다)</li>
+</ul>
+<h2 id="_5">정리와 팁<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Claude에게 실행 수단을 주세요.</strong> <code>run-on-client.sh</code> 하나로 Claude가 private subnet의 클라이언트에서 직접 테스트하고 결과를 읽습니다. 사람은 복사·붙여넣기 대신 판단에 집중합니다.</li>
+<li><strong>기대값을 먼저 쓰고 실행하세요.</strong> test-matrix.sh가 기대값을 들고 있으므로, 결과를 본 뒤 기대값을 맞춰 고치는 일을 막습니다.</li>
+<li><strong>필터는 다음 Lab을 위해 켜 둡니다.</strong> Lab 4는 필터가 켜진 상태(<code>apply-filters.sh on</code>)에서 시작합니다.</li>
+</ul>
+<p>다음: <a href="../60-lab4-troubleshoot/">Lab 4. Troubleshoot — 장애 주입과 AI 진단</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  맨위로
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="하단/푸터" >
+        
+          
+          <a href="../40-lab2-build/" class="md-footer__link md-footer__link--prev" aria-label="이전: Lab 2. Build — 인증서와 IaC 만들기">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                이전
+              </span>
+              <div class="md-ellipsis">
+                Lab 2. Build — 인증서와 IaC 만들기
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../60-lab4-troubleshoot/" class="md-footer__link md-footer__link--next" aria-label="다음: Lab 4. Troubleshoot — 장애 주입과 AI 진단">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                다음
+              </span>
+              <div class="md-ellipsis">
+                Lab 4. Troubleshoot — 장애 주입과 AI 진단
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.indexes", "navigation.footer", "navigation.top", "content.code.copy", "content.tabs.link", "search.highlight"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac\ub428", "clipboard.copy": "\ud074\ub9bd\ubcf4\ub4dc\ub85c \ubcf5\uc0ac", "search.result.more.one": "\uc774 \ubb38\uc11c\uc5d0\uc11c 1\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.more.other": "\uc774 \ubb38\uc11c\uc5d0\uc11c #\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.none": "\uac80\uc0c9\uc5b4\uc640 \uc77c\uce58\ud558\ub294 \ubb38\uc11c\uac00 \uc5c6\uc2b5\ub2c8\ub2e4", "search.result.one": "1\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.other": "#\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.placeholder": "\uac80\uc0c9\uc5b4\ub97c \uc785\ub825\ud558\uc138\uc694", "search.result.term.missing": "\ud3ec\ud568\ub418\uc9c0 \uc54a\uc740 \uac80\uc0c9\uc5b4", "select.version": "\ubc84\uc804 \uc120\ud0dd"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

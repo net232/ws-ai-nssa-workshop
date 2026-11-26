@@ -1,0 +1,203 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >-
+  ws-ai-nssa - Workshop IDE. An EC2 instance reached only through AWS Systems Manager
+  Session Manager, with Claude Code (Amazon Bedrock), AWS CLI, cfn-lint, jq and openssl.
+  LabPermissions has no default, so every deployment chooses it. With admin the instance role has AdministratorAccess so that
+  attendees can create the lab stacks: deploy it only in a dedicated lab account, never in
+  an account that holds anything else.
+
+Parameters:
+  InstanceType:
+    Type: String
+    Default: t4g.medium
+    AllowedValues: [t4g.medium, t4g.large]
+  LatestAmiId:
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
+    Default: /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-arm64
+  BedrockRegion:
+    Type: String
+    Default: us-east-1
+    Description: Region that Claude Code calls Amazon Bedrock in (AWS_REGION).
+  LabRegion:
+    Type: String
+    Default: ap-northeast-2
+    Description: Region that the lab stacks are created in (LAB_REGION).
+  LabPermissions:
+    Type: String
+    AllowedValues: [admin, bedrock-only]
+    Description: >-
+      admin - AdministratorAccess so attendees can create the lab stacks (event accounts).
+      bedrock-only - Session Manager and Amazon Bedrock only, for validating the IDE
+      itself in an account that holds other resources.
+
+Conditions:
+  GrantAdmin: !Equals [!Ref LabPermissions, admin]
+
+Resources:
+  Vpc:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.100.0.0/16
+      EnableDnsHostnames: true
+      EnableDnsSupport: true
+      Tags:
+        - { Key: Name, Value: ws-ai-nssa-ide }
+        - { Key: Project, Value: ws-ai-nssa }
+
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - { Key: Project, Value: ws-ai-nssa }
+
+  GatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref Vpc
+      InternetGatewayId: !Ref InternetGateway
+
+  PublicSubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref Vpc
+      CidrBlock: 10.100.0.0/24
+      AvailabilityZone: !Select [0, !GetAZs ""]
+      MapPublicIpOnLaunch: true
+      Tags:
+        - { Key: Name, Value: ws-ai-nssa-ide-public }
+        - { Key: Project, Value: ws-ai-nssa }
+
+  RouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref Vpc
+      Tags:
+        - { Key: Project, Value: ws-ai-nssa }
+
+  DefaultRoute:
+    Type: AWS::EC2::Route
+    DependsOn: GatewayAttachment
+    Properties:
+      RouteTableId: !Ref RouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref InternetGateway
+
+  SubnetRouteTable:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref PublicSubnet
+      RouteTableId: !Ref RouteTable
+
+  # No inbound rules: the only way in is Session Manager.
+  IdeSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Workshop IDE - egress only
+      VpcId: !Ref Vpc
+      SecurityGroupEgress:
+        - IpProtocol: "-1"
+          CidrIp: 0.0.0.0/0
+          Description: Package installs, AWS APIs and Amazon Bedrock
+      Tags:
+        - { Key: Project, Value: ws-ai-nssa }
+
+  IdeRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal: { Service: ec2.amazonaws.com }
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - !Sub arn:${AWS::Partition}:iam::aws:policy/AmazonSSMManagedInstanceCore
+        # Lab accounts only. Labs create VPCs, NLBs, IAM roles, Cloud WAN.
+        - !If [GrantAdmin, !Sub "arn:${AWS::Partition}:iam::aws:policy/AdministratorAccess", !Ref AWS::NoValue]
+      Policies:
+        - PolicyName: bedrock-invoke
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - bedrock:InvokeModel
+                  - bedrock:InvokeModelWithResponseStream
+                  - bedrock:ListInferenceProfiles
+                  - bedrock:GetInferenceProfile
+                  - bedrock:ListFoundationModels
+                  - bedrock:GetFoundationModel
+                Resource: "*"
+      Tags:
+        - { Key: Project, Value: ws-ai-nssa }
+
+  IdeInstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Roles: [!Ref IdeRole]
+
+  IdeInstance:
+    Type: AWS::EC2::Instance
+    DependsOn: DefaultRoute
+    Properties:
+      ImageId: !Ref LatestAmiId
+      InstanceType: !Ref InstanceType
+      IamInstanceProfile: !Ref IdeInstanceProfile
+      SubnetId: !Ref PublicSubnet
+      SecurityGroupIds: [!Ref IdeSecurityGroup]
+      MetadataOptions:
+        HttpTokens: required
+      BlockDeviceMappings:
+        - DeviceName: /dev/xvda
+          Ebs:
+            VolumeSize: 30
+            VolumeType: gp3
+            Encrypted: true
+      Tags:
+        - { Key: Name, Value: ws-ai-nssa-ide }
+        - { Key: Project, Value: ws-ai-nssa }
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          set -euxo pipefail
+          # nodejs22: AL2023 default nodejs is 18 (EOL); Claude Code needs a supported Node.js
+          dnf install -y git jq tmux tree unzip openssl nodejs22 nodejs22-npm
+          alternatives --set node /usr/bin/node-22 || true
+          # Latest AWS CLI v2 from the official zip: new APIs (e.g. NLB mTLS identity filters)
+          # need a current CLI. Remove the older RPM so /usr/bin/aws never shadows it.
+          dnf remove -y awscli-2 || true
+          curl -fsSL "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o /tmp/awscliv2.zip
+          unzip -q /tmp/awscliv2.zip -d /tmp
+          /tmp/aws/install --update
+          rm -rf /tmp/aws /tmp/awscliv2.zip
+          npm install -g @anthropic-ai/claude-code
+          # uv/uvx: AWS IaC MCP server (.mcp.json) and Cloud WAN validate.sh
+          curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR=/usr/local/bin UV_NO_MODIFY_PATH=1 sh
+          # cfn-lint in its own venv on a uv-managed Python 3.12. pip into the system Python 3.9
+          # replaces RPM-owned packages (jsonschema, attrs) that cloud-init relies on, and
+          # caps cfn-lint at an older release.
+          UV_TOOL_DIR=/opt/uv-tools UV_TOOL_BIN_DIR=/usr/local/bin UV_CACHE_DIR=/tmp/uv-cache \
+            UV_PYTHON_INSTALL_DIR=/opt/uv-python /usr/local/bin/uv tool install --python 3.12 cfn-lint
+          rm -rf /tmp/uv-cache
+          cat > /etc/profile.d/ws-ai-nssa.sh <<'EOF'
+          # Claude Code -> Amazon Bedrock
+          export CLAUDE_CODE_USE_BEDROCK=1
+          export AWS_REGION=${BedrockRegion}
+          # Lab stacks: always pass --region "$LAB_REGION" to the AWS CLI
+          export LAB_REGION=${LabRegion}
+          export PATH="/usr/local/bin:$PATH"
+          EOF
+          chmod 644 /etc/profile.d/ws-ai-nssa.sh
+          # Fail cloud-init (and skip the ready banner) if a tool is missing
+          node --version
+          /usr/local/bin/aws --version
+          HOME=/root /usr/bin/claude --version
+          /usr/local/bin/cfn-lint --version
+          echo "ws-ai-nssa IDE ready" > /etc/motd
+
+Outputs:
+  InstanceId:
+    Value: !Ref IdeInstance
+  SessionManagerUrl:
+    Description: Open a terminal on the IDE in the browser
+    Value: !Sub https://${AWS::Region}.console.aws.amazon.com/systems-manager/session-manager/${IdeInstance}?region=${AWS::Region}

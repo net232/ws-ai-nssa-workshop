@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 656" width="960" height="656" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">
+<title>NLB mTLS 테스트 매트릭스 흐름</title>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1d8102"/></marker></defs>
+<rect width="960" height="656" fill="#ffffff"/>
+<text x="20" y="32" font-size="18" font-weight="700" fill="#16191f">NLB mTLS 테스트 매트릭스 — 클라이언트 인증서가 어느 단계에서 걸리는가</text>
+<text x="20" y="52" font-size="12" fill="#545b64">검사 순서: 신뢰 체인 → identity filter → CRL (NLB 사용자 가이드). 거부되면 access log의 tls_verify_status에 사유 코드가 남습니다.</text>
+<rect x="290" y="70" width="150" height="524" rx="8" fill="#f2f8fd" stroke="#0972d3" stroke-width="1" stroke-dasharray="0"/>
+<text x="365.0" y="90" font-size="12.5" font-weight="700" fill="#16191f" text-anchor="middle">① 신뢰 체인 검사</text>
+<text x="365.0" y="106" font-size="11" fill="#545b64" text-anchor="middle">CA 번들 · 유효기간 · EKU/KU</text>
+<rect x="470" y="70" width="140" height="524" rx="8" fill="#f2f8fd" stroke="#0972d3" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="540.0" y="90" font-size="12.5" font-weight="700" fill="#16191f" text-anchor="middle">② identity filter (선택)</text>
+<text x="540.0" y="106" font-size="11" fill="#545b64" text-anchor="middle">OU · CN · SAN.DNS · SAN.URI</text>
+<rect x="640" y="70" width="140" height="524" rx="8" fill="#f2f8fd" stroke="#0972d3" stroke-width="1" stroke-dasharray="0"/>
+<text x="710.0" y="90" font-size="12.5" font-weight="700" fill="#16191f" text-anchor="middle">③ CRL 확인</text>
+<text x="710.0" y="106" font-size="11" fill="#545b64" text-anchor="middle">trust store revocation</text>
+<rect x="810" y="70" width="130" height="524" rx="8" fill="#f2fbf0" stroke="#1d8102" stroke-width="1" stroke-dasharray="0"/>
+<text x="875.0" y="90" font-size="12.5" font-weight="700" fill="#16191f" text-anchor="middle">대상 그룹 (TCP 8080)</text>
+<text x="875.0" y="106" font-size="11" fill="#545b64" text-anchor="middle">backend A / B</text>
+<text x="20" y="90" font-size="12.5" font-weight="700" fill="#16191f">클라이언트 인증서 (curl --cert)</text>
+<text x="20" y="106" font-size="11" fill="#545b64">listener 443 = mTLS verify, 8443 = off</text>
+<rect x="20" y="111" width="240" height="36" rx="6" fill="#ffffff" stroke="#8d99a8"/>
+<text x="30" y="126" font-size="12.5" font-weight="700" fill="#16191f">client-valid</text>
+<text x="30" y="141" font-size="10.5" fill="#545b64">OU=Production, clientAuth</text>
+<line x1="260" y1="128" x2="812" y2="128" stroke="#1d8102" stroke-width="2.5" marker-end="url(#ar)"/>
+<text x="875" y="132" font-size="11.5" font-weight="700" fill="#1d8102" text-anchor="middle">통과</text>
+<text x="365" y="122" font-size="10.5" fill="#1d8102" text-anchor="middle">Success</text>
+<rect x="20" y="157" width="240" height="36" rx="6" fill="#ffffff" stroke="#8d99a8"/>
+<text x="30" y="172" font-size="12.5" font-weight="700" fill="#16191f">인증서 없음</text>
+<text x="30" y="187" font-size="10.5" fill="#545b64">--cert 생략</text>
+<line x1="260" y1="174" x2="354.0" y2="174" stroke="#d91515" stroke-width="2.5"/>
+<circle cx="365.0" cy="174" r="10" fill="#d91515"/>
+<path d="M361.0,170 L369.0,178 M369.0,170 L361.0,178" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+<text x="365.0" y="198" font-size="10.5" fill="#d91515" text-anchor="middle">거부 (로그로 확인)</text>
+<rect x="20" y="203" width="240" height="36" rx="6" fill="#ffffff" stroke="#8d99a8"/>
+<text x="30" y="218" font-size="12.5" font-weight="700" fill="#16191f">client-other-ca</text>
+<text x="30" y="233" font-size="10.5" fill="#545b64">rogue CA가 서명</text>
+<line x1="260" y1="220" x2="354.0" y2="220" stroke="#d91515" stroke-width="2.5"/>
+<circle cx="365.0" cy="220" r="10" fill="#d91515"/>
+<path d="M361.0,216 L369.0,224 M369.0,216 L361.0,224" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+<text x="365.0" y="244" font-size="10.5" fill="#d91515" text-anchor="middle">ClientCertUntrusted</text>
+<rect x="20" y="249" width="240" height="36" rx="6" fill="#ffffff" stroke="#8d99a8"/>
+<text x="30" y="264" font-size="12.5" font-weight="700" fill="#16191f">client-eku-server</text>
+<text x="30" y="279" font-size="10.5" fill="#545b64">EKU = serverAuth만</text>
+<line x1="260" y1="266" x2="354.0" y2="266" stroke="#d91515" stroke-width="2.5"/>
+<circle cx="365.0" cy="266" r="10" fill="#d91515"/>
+<path d="M361.0,262 L369.0,270 M369.0,262 L361.0,270" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+<text x="365.0" y="290" font-size="10.5" fill="#d91515" text-anchor="middle">ClientCertPurposeInvalid</text>
+<rect x="20" y="295" width="240" height="36" rx="6" fill="#ffffff" stroke="#8d99a8"/>
+<text x="30" y="310" font-size="12.5" font-weight="700" fill="#16191f">client-expired</text>
+<text x="30" y="325" font-size="10.5" fill="#545b64">2025-01 ~ 2025-02</text>
+<line x1="260" y1="312" x2="354.0" y2="312" stroke="#d91515" stroke-width="2.5"/>
+<circle cx="365.0" cy="312" r="10" fill="#d91515"/>
+<path d="M361.0,308 L369.0,316 M369.0,308 L361.0,316" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+<text x="365.0" y="336" font-size="10.5" fill="#d91515" text-anchor="middle">ClientCertExpired</text>
+<rect x="20" y="341" width="240" height="36" rx="6" fill="#ffffff" stroke="#8d99a8"/>
+<text x="30" y="356" font-size="12.5" font-weight="700" fill="#16191f">client-no-eku</text>
+<text x="30" y="371" font-size="10.5" fill="#545b64">EKU·KU 확장 없음</text>
+<line x1="260" y1="358" x2="812" y2="358" stroke="#1d8102" stroke-width="2.5" marker-end="url(#ar)"/>
+<text x="875" y="362" font-size="11.5" font-weight="700" fill="#1d8102" text-anchor="middle">통과</text>
+<text x="365" y="352" font-size="10.5" fill="#1d8102" text-anchor="middle">Success (검사 생략)</text>
+<rect x="20" y="387" width="240" height="36" rx="6" fill="#ffffff" stroke="#8d99a8"/>
+<text x="30" y="402" font-size="12.5" font-weight="700" fill="#16191f">client-staging</text>
+<text x="30" y="417" font-size="10.5" fill="#545b64">OU=Staging</text>
+<line x1="260" y1="404" x2="812" y2="404" stroke="#1d8102" stroke-width="2.5" marker-end="url(#ar)"/>
+<text x="875" y="408" font-size="11.5" font-weight="700" fill="#1d8102" text-anchor="middle">통과</text>
+<text x="365" y="398" font-size="10.5" fill="#1d8102" text-anchor="middle">필터 없음: Success</text>
+<circle cx="540" cy="416" r="8" fill="#ffffff" stroke="#d91515" stroke-width="2" stroke-dasharray="3 2"/>
+<path d="M536.5,412.5 L543.5,419.5 M543.5,412.5 L536.5,419.5" stroke="#d91515" stroke-width="2" stroke-linecap="round"/>
+<text x="540" y="437" font-size="10" fill="#d91515" text-anchor="middle">필터 적용 후 → CertificateFilterNoMatch</text>
+<rect x="20" y="433" width="240" height="36" rx="6" fill="#ffffff" stroke="#8d99a8"/>
+<text x="30" y="448" font-size="12.5" font-weight="700" fill="#16191f">client-uri-only</text>
+<text x="30" y="463" font-size="10.5" fill="#545b64">OU=Engineering, SAN.URI …/ns/prod/</text>
+<line x1="260" y1="450" x2="812" y2="450" stroke="#1d8102" stroke-width="2.5" marker-end="url(#ar)"/>
+<text x="875" y="454" font-size="11.5" font-weight="700" fill="#1d8102" text-anchor="middle">통과</text>
+<text x="365" y="444" font-size="10.5" fill="#1d8102" text-anchor="middle">Success</text>
+<text x="540" y="466" font-size="10" fill="#1d8102" text-anchor="middle">필터 후에도 통과 (SAN.URI OR)</text>
+<rect x="20" y="479" width="240" height="36" rx="6" fill="#ffffff" stroke="#8d99a8"/>
+<text x="30" y="494" font-size="12.5" font-weight="700" fill="#16191f">client-revoked</text>
+<text x="30" y="509" font-size="10.5" fill="#545b64">CRL에 serial 등재</text>
+<line x1="260" y1="496" x2="699.0" y2="496" stroke="#d91515" stroke-width="2.5"/>
+<circle cx="710.0" cy="496" r="10" fill="#d91515"/>
+<path d="M706.0,492 L714.0,500 M714.0,492 L706.0,500" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+<text x="710.0" y="520" font-size="10.5" fill="#d91515" text-anchor="middle">ClientCertCrlHit</text>
+<rect x="20" y="525" width="240" height="36" rx="6" fill="#ffffff" stroke="#8d99a8"/>
+<text x="30" y="540" font-size="12.5" font-weight="700" fill="#16191f">:8443 아무 인증서</text>
+<text x="30" y="555" font-size="10.5" fill="#545b64">mTLS off 리스너</text>
+<line x1="260" y1="542" x2="800" y2="542" stroke="#8d99a8" stroke-width="2" stroke-dasharray="2 4"/>
+<text x="535" y="536" font-size="10.5" fill="#545b64" text-anchor="middle">검사 없이 통과</text>
+<line x1="780" y1="542" x2="812" y2="542" stroke="#1d8102" stroke-width="2" marker-end="url(#ar)"/>
+<text x="875" y="546" font-size="11.5" font-weight="700" fill="#1d8102" text-anchor="middle">통과</text>
+<line x1="20" y1="628" x2="50" y2="628" stroke="#1d8102" stroke-width="2.5"/><text x="56" y="632" font-size="11" fill="#16191f">허용 (HTTP 200)</text>
+<circle cx="170" cy="628" r="7" fill="#d91515"/><text x="182" y="632" font-size="11" fill="#16191f">거부 지점과 tls_verify_status (Failed:&lt;코드&gt;)</text>
+<circle cx="470" cy="628" r="7" fill="#fff" stroke="#d91515" stroke-dasharray="3 2" stroke-width="2"/><text x="482" y="632" font-size="11" fill="#16191f">Lab 3 2단계 (필터: OU=Production OR SAN.URI prefix …/ns/prod/)</text>
+</svg>

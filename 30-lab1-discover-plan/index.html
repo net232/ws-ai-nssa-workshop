@@ -1,0 +1,1562 @@
+
+<!doctype html>
+<html lang="ko" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Claude Code로 신규 네트워킹 기능 테스트와 워크숍 만들기 (1일 실습)">
+      
+      
+      
+        <link rel="canonical" href="https://conft2k.github.io/ws-ai-nssa-workshop/30-lab1-discover-plan/">
+      
+      
+        <link rel="prev" href="../20-lifecycle/">
+      
+      
+        <link rel="next" href="../40-lab2-build/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>Lab 1. Discover & Plan — 신규 기능 조사와 테스트 계획 - AI로 일하는 Networking SA</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../static/site.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lab-1-discover-plan" class="md-skip">
+          콘텐츠로 이동
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="상단/헤더">
+    <a href=".." title="AI로 일하는 Networking SA" class="md-header__button md-logo" aria-label="AI로 일하는 Networking SA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI로 일하는 Networking SA
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab 1. Discover & Plan — 신규 기능 조사와 테스트 계획
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="다크 모드"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="다크 모드" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="라이트 모드"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="라이트 모드" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="검색" placeholder="검색" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="검색">
+        
+        <button type="reset" class="md-search__icon md-icon" title="지우기" aria-label="지우기" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            검색 초기화
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="네비게이션" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AI로 일하는 Networking SA" class="md-nav__button md-logo" aria-label="AI로 일하는 Networking SA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI로 일하는 Networking SA
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI로 일하는 Networking SA — Claude Code로 신규 기능 테스트와 워크숍 만들기
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0. 환경 준비
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../10-claude-code-basics/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Claude Code 기초
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Claude Code 기초
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-claude-code-basics/11-first-session/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-1. 첫 세션
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-claude-code-basics/12-claude-md-agents-md/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-2. CLAUDE.md와 AGENTS.md
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-claude-code-basics/13-settings-permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-3. 설정과 권한
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-claude-code-basics/14-extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-4. 확장: Skill · Subagent · MCP · Hook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-claude-code-basics/15-tips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-5. 실전 팁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-claude-code-basics/16-mattpocock-skills/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-6. Matt Pocock skills 활용
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20-lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. 라이프사이클 개요
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 1. Discover & Plan — 신규 기능 조사와 테스트 계획
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 1. Discover & Plan — 신규 기능 조사와 테스트 계획
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        목표
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        라이프사이클에서의 위치
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        테스트 환경 미리 보기
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1단계. 세션 시작과 도구 확인
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2단계. 조사: 출처가 붙은 조사 노트 만들기
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2단계. 조사: 출처가 붙은 조사 노트 만들기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        검증 체크포인트 1 — 조사 노트를 믿어도 되는가
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-plan-mode-skill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3단계. 설계: plan mode와 skill로 테스트 계획서 만들기
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3단계. 설계: plan mode와 skill로 테스트 계획서 만들기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        검증 체크포인트 2 — 계획서를 승인해도 되는가
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        정답 예시
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        정리와 팁
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../40-lab2-build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 2. Build — 인증서와 IaC 만들기
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../50-lab3-verify/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 3. Verify — 테스트 매트릭스 실행과 증적
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../60-lab4-troubleshoot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 4. Troubleshoot — 장애 주입과 AI 진단
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../70-lab5-workshop-authoring/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 5. Workshop authoring — AI로 워크숍 만들기
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lab 5. Workshop authoring — AI로 워크숍 만들기
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../70-lab5-workshop-authoring/71-plan-and-conventions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5-1. 기획과 규약
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../70-lab5-workshop-authoring/72-iac-and-validate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5-2. 토폴로지를 IaC로
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../70-lab5-workshop-authoring/73-page-and-diagram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5-3. 페이지와 구성도
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../70-lab5-workshop-authoring/74-rehearsal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5-4. 리허설 (선택)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../80-lab6-review-package/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 6. Review & Package
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../90-cleanup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    정리
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        목표
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        라이프사이클에서의 위치
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        테스트 환경 미리 보기
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1단계. 세션 시작과 도구 확인
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2단계. 조사: 출처가 붙은 조사 노트 만들기
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2단계. 조사: 출처가 붙은 조사 노트 만들기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        검증 체크포인트 1 — 조사 노트를 믿어도 되는가
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-plan-mode-skill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3단계. 설계: plan mode와 skill로 테스트 계획서 만들기
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3단계. 설계: plan mode와 skill로 테스트 계획서 만들기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        검증 체크포인트 2 — 계획서를 승인해도 되는가
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        정답 예시
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        정리와 팁
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="lab-1-discover-plan">Lab 1. Discover &amp; Plan — 신규 기능 조사와 테스트 계획<a class="headerlink" href="#lab-1-discover-plan" title="Permanent link">&para;</a></h1>
+<p>2026년 11월에 <strong>Network Load Balancer mutual TLS(mTLS)</strong> 가 출시되었습니다. 고객이 "NLB에서 클라이언트 인증서로 접근을 막을 수 있나요? CRL은요? 특정 팀 인증서만 허용할 수 있나요?"라고 묻기 시작합니다. 답하려면 직접 테스트해 봐야 합니다.</p>
+<p>Lab 1–4에서는 이 신규 기능을 <strong>조사 → 설계 → 구축 → 검증 → 디버깅</strong> 순서로 끝까지 테스트합니다. Lab 1에서는 코드를 한 줄도 쓰지 않습니다. 대신 Claude Code와 함께 <strong>근거 있는 조사 노트</strong>와 <strong>사람이 승인한 테스트 계획서</strong>를 만듭니다.</p>
+<h2 id="_1">목표<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>AWS Knowledge MCP로 신규 기능의 공식 문서를 조사하고, 모든 주장에 출처 URL을 붙인 <code>research.md</code>를 만듭니다.</li>
+<li>AI가 "문서끼리 다른 곳"과 "확인하지 못한 것"을 숨기지 않고 드러내게 합니다.</li>
+<li>plan mode와 <code>net-test-plan</code> skill로 테스트 매트릭스·성공 기준·비용·정리 절차가 들어간 <code>test-plan.md</code>를 만듭니다.</li>
+</ul>
+<h2 id="_2">라이프사이클에서의 위치<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p><img alt="라이프사이클 8단계" src="../static/images/lifecycle.svg" /></p>
+<table>
+<thead>
+<tr>
+<th>단계</th>
+<th>이 Lab에서 AI가 하는 일</th>
+<th>사람이 판단할 일</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 Discover 조사</td>
+<td>What's New·사용자 가이드·API·CloudFormation·쿼터·요금 조사, 출처 정리</td>
+<td>출처를 직접 열어 확인, 범위 결정</td>
+</tr>
+<tr>
+<td>2 Plan 설계</td>
+<td>테스트 매트릭스, 환경, 비용, 위험, 정리 절차 초안</td>
+<td>시나리오 승인, 빠진 음성 케이스 추가</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">테스트 환경 미리 보기<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>Lab 2에서 만들 환경입니다. 계획을 세울 때 이 그림을 기준으로 이야기합니다.</p>
+<p><img alt="NLB mTLS 테스트 환경" src="../static/images/arch-nlb-mtls-test.svg" /></p>
+<ul>
+<li><code>ap-northeast-2</code>, VPC <code>10.20.0.0/16</code>, AZ 2개, private subnet에 <strong>internal NLB</strong></li>
+<li>TLS <code>:443</code> 리스너: mTLS <strong>verify</strong> (trust store = S3의 CA 번들 + CRL)</li>
+<li>TLS <code>:8443</code> 리스너: mTLS <strong>off</strong> (같은 NLB에서 비교하는 대조군)</li>
+<li>대상 EC2 2대(TCP 8080), 클라이언트 EC2 1대(SSM Session Manager로 접속)</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>모든 작업은 Module 1에서 만든 실습 폴더 <code>~/ws-lab</code>에서 합니다. Lab 1 산출물: <code>~/ws-lab/research.md</code>, <code>~/ws-lab/test-plan.md</code></p>
+</div>
+<hr />
+<h2 id="1">1단계. 세션 시작과 도구 확인<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/ws-lab
+claude
+</code></pre></div>
+<p>Claude Code에 입력:</p>
+<div class="highlight"><pre><span></span><code>/mcp
+</code></pre></div>
+<p><code>aws-knowledge</code>(AWS Knowledge MCP)가 <code>connected</code>인지 확인합니다. 연결되어 있지 않으면 <a href="../10-claude-code-basics/14-extensions/">1-4. 확장 기능</a>의 MCP 절을 다시 확인하세요.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>조사 단계에서는 AWS 계정을 바꾸는 명령이 필요 없습니다. Shift+Tab으로 <strong>plan mode</strong>에 두면 Claude가 파일을 쓰거나 명령을 실행하기 전에 계획부터 보여 줍니다.</p>
+</div>
+<h2 id="2">2단계. 조사: 출처가 붙은 조사 노트 만들기<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>Claude Code에 입력:</p>
+<div class="highlight"><pre><span></span><code>2026년 11월에 출시된 Network Load Balancer mutual TLS(mTLS)를 조사해 줘.
+aws-knowledge MCP로 공식 문서만 찾아서 다음을 정리해 research.md로 저장해.
+
+1. What's New 공지, 블로그, NLB 사용자 가이드(mutual authentication, configure, client certificate filters, access logs), 쿼터, API 레퍼런스
+2. 지원 모드(verify/passthrough/off 중 NLB가 지원하는 것), 검사 순서, 클라이언트 인증서 요구 사항(EKU, KU, 체인 깊이, 크기)
+3. CA 번들·CRL 파일 형식 규칙, identity filter의 필드·매치 방식·대소문자 규칙
+4. access log에서 mTLS 결과를 보여 주는 필드와 오류 코드 전체
+5. CLI 명령과 CloudFormation 리소스·속성 이름(정확한 철자)
+6. ap-northeast-2 요금(가능하면 pricing 도구로)
+
+규칙:
+- 표의 모든 행에 출처 URL을 붙여. 문서에서 확인하지 못한 것은 "확인 필요"로 표시해.
+- 문서끼리 서로 다르게 말하는 곳이 있으면 "문서 불일치" 절에 따로 모아.
+- 추측으로 채우지 마.
+</code></pre></div>
+<p>Claude가 <code>search_documentation</code>, <code>read_documentation</code>을 여러 번 호출하는 것이 보입니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>plan mode에서는 파일이 저장되지 않습니다.</strong> 조사가 끝나면 Claude가 "research.md에 이렇게 쓰겠다"는 계획을 보여 주고 승인을 요청합니다. 내용을 훑어보고 승인해야 파일이 만들어집니다. 계획 없이 바로 저장하게 하려면 Shift+Tab으로 기본 모드로 돌아온 뒤 요청합니다.</p>
+</div>
+<p>승인 후 파일이 생겼는지 확인하고 엽니다.</p>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-l<span class="w"> </span>~/ws-lab/research.md<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>less<span class="w"> </span>~/ws-lab/research.md
+</code></pre></div>
+<details class="note">
+<summary>선택: /research로 백그라운드 조사 돌리기 (Matt Pocock skills)</summary>
+<p>조사가 길어질 것 같으면 <code>/research</code>를 쓰면 됩니다. 백그라운드 agent가 1차 출처로 조사하고, 주장마다 출처를 붙인 Markdown 파일을 저장합니다. 그동안 메인 세션에서는 3단계 계획을 먼저 생각해 둘 수 있습니다.</p>
+<p>Claude Code에 입력:</p>
+<div class="highlight"><pre><span></span><code>/research NLB mutual TLS의 trust store 제약(CA 번들 형식, 인증서 체인 깊이, CRL 형식과 개수, 지원 키 알고리즘)과 access log 오류 코드를 AWS 공식 문서 기준으로 조사해서 notes/nlb-mtls-limits.md로 저장해 줘.
+</code></pre></div>
+<p>끝났다는 알림이 오면 <code>notes/nlb-mtls-limits.md</code>를 <code>research.md</code>와 비교합니다. 두 결과가 다른 곳이 바로 직접 확인할 곳입니다. skill 설명은 <a href="../10-claude-code-basics/16-mattpocock-skills/">1-6. Matt Pocock skills 활용</a>을 참고하세요.</p>
+</details>
+<h3 id="1_1">검증 체크포인트 1 — 조사 노트를 믿어도 되는가<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h3>
+<p>AI가 만든 조사 노트에서 가장 위험한 것은 <strong>그럴듯하게 지어낸 사실</strong>입니다. 다음을 직접 확인합니다.</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 출처 URL 중 3개를 골라 브라우저로 열고, 표의 내용이 그 페이지에 실제로 있는지 확인했다.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> "NLB가 지원하는 모드"가 <code>off</code>, <code>verify</code> <strong>두 가지</strong>로 적혀 있다. <code>passthrough</code>가 NLB에도 된다고 적혀 있으면 틀린 것입니다(ALB 전용).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> EKU·KU 확장이 <strong>없는</strong> 인증서는 그 검사를 건너뛴다는 내용이 있다(Lab 3에서 직접 확인할 반직관적인 동작입니다).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> access log 오류 코드에 <code>ClientCertUntrusted</code>, <code>ClientCertCrlHit</code>, <code>ClientCertPurposeInvalid</code>, <code>ClientCertExpired</code>, <code>CertificateFilterNoMatch</code>가 있다.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> "문서 불일치" 절이 있다. 없다면 다음 프롬프트로 다시 묻습니다.</li>
+</ul>
+<p>Claude Code에 입력:</p>
+<div class="highlight"><pre><span></span><code>CloudFormation 템플릿 레퍼런스의 AWS::ElasticLoadBalancingV2::Listener MutualAuthentication 속성 목록과,
+NLB 사용자 가이드 client certificate filters 페이지의 CloudFormation 예시를 직접 비교해 줘.
+ClientCertificateIdentityFilters가 양쪽에 다 있는지, 필드 값 표기(Subject.CN vs subject-cn)는 어떤지 출처와 함께 research.md의 "문서 불일치"에 추가해.
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>출시 직후 기능에서는 <strong>문서끼리 다른 경우</strong>가 흔합니다. 이 워크숍 작성 시점(2026-11-26)에는 사용자 가이드가 CloudFormation 예시에 <code>ClientCertificateIdentityFilters</code>를 보여 주지만, CloudFormation 템플릿 레퍼런스와 <code>cfn-lint</code>에는 이 속성이 없었습니다. 이런 차이를 찾는 것까지가 조사입니다. 어느 쪽을 따를지는 사람이 정합니다. 워크숍 전 리허설에서는 계정의 CloudFormation 레지스트리 스키마에도 이 속성이 없었습니다(Lab 2 함정 B).</p>
+</div>
+<details class="note">
+<summary>강사용: '확인 필요' 항목의 리허설 결과 (2026-11-26)</summary>
+<p>참석자가 Lab 3에서 직접 닫을 항목입니다. 미리 알려 주지 말고, 결과를 비교할 때 씁니다.</p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>리허설 결과</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>인증서 없음 사유 코드</td>
+<td><code>Failed:ClientCertMissing</code></td>
+</tr>
+<tr>
+<td>mTLS 전용 CloudWatch 메트릭</td>
+<td>배포 후 30분 동안 없음. 거부는 <code>ClientTLSNegotiationErrorCount</code>에 세어짐</td>
+</tr>
+<tr>
+<td>CFN <code>ClientCertificateIdentityFilters</code></td>
+<td><code>cfn-lint</code> E3002, 레지스트리 스키마에 없음. change set은 생성됨(실행 결과는 미확인)</td>
+</tr>
+<tr>
+<td>CA 번들 교체 시 기존 CRL</td>
+<td>revocation이 그대로 남음</td>
+</tr>
+</tbody>
+</table>
+<p>자세한 내용은 <code>~/ws-solutions/nlb-mtls/rehearsal.md</code>에 있습니다.</p>
+</details>
+<h2 id="3-plan-mode-skill">3단계. 설계: plan mode와 skill로 테스트 계획서 만들기<a class="headerlink" href="#3-plan-mode-skill" title="Permanent link">&para;</a></h2>
+<p>Shift+Tab을 눌러 plan mode인지 확인한 뒤, Claude Code에 입력:</p>
+<div class="highlight"><pre><span></span><code>/net-test-plan research.md를 근거로 NLB mTLS 테스트 계획서를 test-plan.md로 만들어 줘.
+
+환경: ap-northeast-2, VPC 10.20.0.0/16 (AZ 2개), internal NLB, TLS 443 = mTLS verify(trust store + CRL), TLS 8443 = mTLS off(대조군),
+대상 EC2 2대(TCP 8080), 클라이언트 EC2 1대(SSM). 서버 인증서는 우리 lab CA가 발급해 ACM에 import.
+
+테스트 매트릭스에는 최소한 다음을 넣어:
+정상 클라이언트 / 인증서 없음 / 다른 CA / CRL로 폐기 / EKU가 serverAuth뿐 / EKU·KU 없음 / 만료 /
+identity filter(OU exact + SAN.URI prefix) 불일치와 일치 / OU는 다르고 SAN.URI만 맞는 인증서(OR 동작 확인) / 8443 대조군.
+각 케이스에 기대 결과와 관찰 방법(명령, access log의 tls_verify_status 값)을 적고,
+ap-northeast-2 시간당 비용, 위험, 정리 순서도 넣어. 산출물 경로는 test-plan.md로 해.
+</code></pre></div>
+<p>Claude가 계획을 먼저 보여 줍니다. 계획을 읽고 <strong>승인하기 전에</strong> 빠진 것을 말해 줍니다. 예:</p>
+<div class="highlight"><pre><span></span><code>좋아. 다만 IgnoreClientCertificateExpiry=true로 바꾼 뒤 만료 인증서가 통과하는지 보는 선택 케이스를 추가해 줘.
+그리고 access log는 5분 단위로 전달되니까 관찰 방법에 수집 시점을 적어.
+</code></pre></div>
+<p>승인하면 plan mode가 풀리고 <code>test-plan.md</code>가 저장됩니다. <code>ls -l ~/ws-lab/test-plan.md</code>로 확인합니다.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><code>net-test-plan</code> skill은 계획서를 <code>test-plan.md</code>에 저장합니다. 다른 경로가 필요하면 프롬프트로 지정하면 됩니다. skill은 절차를 정해 줄 뿐이고, 그 자리에서 사람이 주는 지시가 우선합니다.</p>
+</div>
+<details class="note">
+<summary>선택: /grill-me로 테스트 계획을 인터뷰받기 (Matt Pocock skills)</summary>
+<p><code>/grill-me</code>는 계획을 집요하게 인터뷰합니다. 결정할 것을 트리로 펼치고, 질문마다 <strong>추천 답</strong>을 함께 냅니다. 계획서를 쓰기 전에 "무엇을 왜 테스트하는가"를 정리할 때 좋습니다.</p>
+<p>Claude Code에 입력:</p>
+<div class="highlight"><pre><span></span><code>/grill-me 신규 출시된 NLB mTLS를 고객 데모와 워크숍 소재로 테스트하려고 해. research.md를 읽고, internal NLB 하나에 클라이언트 인증서를 여러 종류로 바꿔 가며 허용/거부와 로그 사유 코드를 확인할 계획이야.
+</code></pre></div>
+<p>인터뷰가 끝나면 정해진 결정을 <code>/net-test-plan</code> 프롬프트에 붙여 계획서를 만듭니다. 자세한 사용법은 <a href="../10-claude-code-basics/16-mattpocock-skills/">1-6. Matt Pocock skills 활용</a>을 참고하세요.</p>
+</details>
+<h3 id="2_1">검증 체크포인트 2 — 계획서를 승인해도 되는가<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 모든 테스트 케이스에 <strong>기대 결과</strong>와 <strong>관찰 방법</strong>이 있다. "잘 되는지 확인" 같은 문장은 관찰 방법이 아닙니다.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 거부되어야 하는 <strong>음성 케이스</strong>가 허용 케이스보다 많다.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 반직관적인 케이스(EKU·KU 없음 → 허용)가 들어 있다.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 필터의 OR 동작을 확인하는 케이스(OU 불일치 + SAN.URI 일치 → 허용)가 있다. 허용 케이스가 하나뿐이면 "필터가 OU만 보는지"를 구별할 수 없습니다.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 비용 표에 NAT Gateway와 <strong>trust store 시간 요금</strong>이 있다(ap-northeast-2 $0.005/h, Price List API).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 정리 순서에 "로그 버킷을 먼저 비운다", "ACM에 import한 인증서를 지운다"가 있다.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> research.md의 "확인 필요" 항목이 계획서의 확인 대상으로 넘어와 있다.</li>
+</ul>
+<h2 id="_4">정답 예시<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>막히면 정답 예시와 비교합니다. 그대로 복사하기보다 <strong>내 결과와 무엇이 다른지</strong>를 Claude에게 물어보세요.</p>
+<ul>
+<li>조사 노트: <code>~/ws-solutions/nlb-mtls/research.md</code></li>
+<li>테스트 계획서: <code>~/ws-solutions/nlb-mtls/test-plan.md</code></li>
+</ul>
+<p>Claude Code에 입력:</p>
+<div class="highlight"><pre><span></span><code>~/ws-solutions/nlb-mtls/test-plan.md(정답 예시)와 내 test-plan.md를 비교해서, 빠진 테스트 케이스와 근거가 약한 기대 결과만 알려 줘. 내 파일은 아직 고치지 마.
+</code></pre></div>
+<h2 id="_5">정리와 팁<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>출처를 요구하면 환각이 줄고, 남은 환각은 찾기 쉬워집니다.</strong> "출처 URL 붙여"와 "확인하지 못한 것은 확인 필요로"는 조사 프롬프트의 기본 두 줄입니다.</li>
+<li><strong>AI가 하지 말아야 할 일을 적어 주세요.</strong> "추측으로 채우지 마", "아직 고치지 마"처럼요.</li>
+<li>조사가 끝나면 <code>/clear</code>로 컨텍스트를 비우고 Lab 2를 시작해도 됩니다. 필요한 것은 모두 <code>research.md</code>와 <code>test-plan.md</code>에 있습니다. 파일로 남긴 것만 다음 세션으로 이어집니다.</li>
+</ul>
+<p>다음: <a href="../40-lab2-build/">Lab 2. Build — 인증서와 IaC 만들기</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  맨위로
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="하단/푸터" >
+        
+          
+          <a href="../20-lifecycle/" class="md-footer__link md-footer__link--prev" aria-label="이전: 2. 라이프사이클 개요">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                이전
+              </span>
+              <div class="md-ellipsis">
+                2. 라이프사이클 개요
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../40-lab2-build/" class="md-footer__link md-footer__link--next" aria-label="다음: Lab 2. Build — 인증서와 IaC 만들기">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                다음
+              </span>
+              <div class="md-ellipsis">
+                Lab 2. Build — 인증서와 IaC 만들기
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.indexes", "navigation.footer", "navigation.top", "content.code.copy", "content.tabs.link", "search.highlight"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac\ub428", "clipboard.copy": "\ud074\ub9bd\ubcf4\ub4dc\ub85c \ubcf5\uc0ac", "search.result.more.one": "\uc774 \ubb38\uc11c\uc5d0\uc11c 1\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.more.other": "\uc774 \ubb38\uc11c\uc5d0\uc11c #\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.none": "\uac80\uc0c9\uc5b4\uc640 \uc77c\uce58\ud558\ub294 \ubb38\uc11c\uac00 \uc5c6\uc2b5\ub2c8\ub2e4", "search.result.one": "1\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.other": "#\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.placeholder": "\uac80\uc0c9\uc5b4\ub97c \uc785\ub825\ud558\uc138\uc694", "search.result.term.missing": "\ud3ec\ud568\ub418\uc9c0 \uc54a\uc740 \uac80\uc0c9\uc5b4", "select.version": "\ubc84\uc804 \uc120\ud0dd"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

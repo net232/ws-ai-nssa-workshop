@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" width="960" height="560" role="img" aria-label="AI와 함께하는 신규 기능 테스트·워크숍 제작 라이프사이클">
+<title>AI와 함께하는 신규 기능 테스트·워크숍 제작 라이프사이클</title>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5B6573"/></marker></defs>
+<rect x="0" y="0" width="960" height="560" fill="#FFFFFF"/>
+<text x="30" y="34" font-size="18" font-weight="bold" fill="#1F2933" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">라이프사이클 8단계 — AI가 하는 일과 사람이 판단할 일</text>
+<rect x="30" y="64" width="204" height="200" rx="12" fill="#FFFFFF" stroke="#2F6DB5" stroke-width="1.5"/>
+<path d="M30 76 a12 12 0 0 1 12 -12 h180 a12 12 0 0 1 12 12 v30 h-204 z" fill="#E8F1FB" stroke="none"/>
+<circle cx="52" cy="85" r="12" fill="#2F6DB5"/>
+<text x="52" y="89.5" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">1</text>
+<text x="72" y="90" font-size="14" font-weight="bold" fill="#1B4579" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">Discover 조사</text>
+<text x="44" y="132" font-size="11.5" font-weight="bold" fill="#2F6DB5" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">AI</text>
+<text x="44" y="152" font-size="12.5" font-weight="normal" fill="#1F2933" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">What's New·문서·API 조사</text>
+<text x="44" y="182" font-size="11.5" font-weight="bold" fill="#2F6DB5" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">사람</text>
+<text x="44" y="202" font-size="12.5" font-weight="normal" fill="#1F2933" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">출처 URL 확인, 범위 결정</text>
+<line x1="44" y1="220" x2="220" y2="220" stroke="#D5DAE1"/>
+<text x="44" y="244" font-size="12" font-weight="normal" fill="#52606D" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">산출물  research.md</text>
+<rect x="262" y="64" width="204" height="200" rx="12" fill="#FFFFFF" stroke="#2F6DB5" stroke-width="1.5"/>
+<path d="M262 76 a12 12 0 0 1 12 -12 h180 a12 12 0 0 1 12 12 v30 h-204 z" fill="#E8F1FB" stroke="none"/>
+<circle cx="284" cy="85" r="12" fill="#2F6DB5"/>
+<text x="284" y="89.5" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">2</text>
+<text x="304" y="90" font-size="14" font-weight="bold" fill="#1B4579" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">Plan 설계</text>
+<text x="276" y="132" font-size="11.5" font-weight="bold" fill="#2F6DB5" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">AI</text>
+<text x="276" y="152" font-size="12.5" font-weight="normal" fill="#1F2933" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">테스트 매트릭스·스토리보드 초안</text>
+<text x="276" y="182" font-size="11.5" font-weight="bold" fill="#2F6DB5" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">사람</text>
+<text x="276" y="202" font-size="12.5" font-weight="normal" fill="#1F2933" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">성공 기준·비용 승인</text>
+<line x1="276" y1="220" x2="452" y2="220" stroke="#D5DAE1"/>
+<text x="276" y="244" font-size="12" font-weight="normal" fill="#52606D" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">산출물  test-plan.md</text>
+<rect x="494" y="64" width="204" height="200" rx="12" fill="#FFFFFF" stroke="#2E8B57" stroke-width="1.5"/>
+<path d="M494 76 a12 12 0 0 1 12 -12 h180 a12 12 0 0 1 12 12 v30 h-204 z" fill="#E7F5EC" stroke="none"/>
+<circle cx="516" cy="85" r="12" fill="#2E8B57"/>
+<text x="516" y="89.5" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">3</text>
+<text x="536" y="90" font-size="14" font-weight="bold" fill="#1D5A38" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">Build 구축</text>
+<text x="508" y="132" font-size="11.5" font-weight="bold" fill="#2E8B57" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">AI</text>
+<text x="508" y="152" font-size="12.5" font-weight="normal" fill="#1F2933" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">CFN·스크립트 생성, cfn-lint</text>
+<text x="508" y="182" font-size="11.5" font-weight="bold" fill="#2E8B57" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">사람</text>
+<text x="508" y="202" font-size="12.5" font-weight="normal" fill="#1F2933" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">보안·권한·비용 검토</text>
+<line x1="508" y1="220" x2="684" y2="220" stroke="#D5DAE1"/>
+<text x="508" y="244" font-size="12" font-weight="normal" fill="#52606D" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">산출물  *.yaml · *.sh</text>
+<rect x="726" y="64" width="204" height="200" rx="12" fill="#FFFFFF" stroke="#2E8B57" stroke-width="1.5"/>
+<path d="M726 76 a12 12 0 0 1 12 -12 h180 a12 12 0 0 1 12 12 v30 h-204 z" fill="#E7F5EC" stroke="none"/>
+<circle cx="748" cy="85" r="12" fill="#2E8B57"/>
+<text x="748" y="89.5" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">4</text>
+<text x="768" y="90" font-size="14" font-weight="bold" fill="#1D5A38" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">Verify 검증</text>
+<text x="740" y="132" font-size="11.5" font-weight="bold" fill="#2E8B57" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">AI</text>
+<text x="740" y="152" font-size="12.5" font-weight="normal" fill="#1F2933" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">배포·테스트 실행, 증적 수집</text>
+<text x="740" y="182" font-size="11.5" font-weight="bold" fill="#2E8B57" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">사람</text>
+<text x="740" y="202" font-size="12.5" font-weight="normal" fill="#1F2933" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">기대값과 실제값 비교</text>
+<line x1="740" y1="220" x2="916" y2="220" stroke="#D5DAE1"/>
+<text x="740" y="244" font-size="12" font-weight="normal" fill="#52606D" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">산출물  results.md</text>
+<rect x="30" y="330" width="204" height="200" rx="12" fill="#FFFFFF" stroke="#D9822B" stroke-width="1.5"/>
+<path d="M30 342 a12 12 0 0 1 12 -12 h180 a12 12 0 0 1 12 12 v30 h-204 z" fill="#FDF0E4" stroke="none"/>
+<circle cx="52" cy="351" r="12" fill="#D9822B"/>
+<text x="52" y="355.5" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">5</text>
+<text x="72" y="356" font-size="14" font-weight="bold" fill="#8A4D12" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">Troubleshoot 디버깅</text>
+<text x="44" y="398" font-size="11.5" font-weight="bold" fill="#D9822B" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">AI</text>
+<text x="44" y="418" font-size="12.5" font-weight="normal" fill="#1F2933" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">가설 세우고 근거 수집</text>
+<text x="44" y="448" font-size="11.5" font-weight="bold" fill="#D9822B" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">사람</text>
+<text x="44" y="468" font-size="12.5" font-weight="normal" fill="#1F2933" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">근본 원인 확정</text>
+<line x1="44" y1="486" x2="220" y2="486" stroke="#D5DAE1"/>
+<text x="44" y="510" font-size="12" font-weight="normal" fill="#52606D" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">산출물  rca.md</text>
+<rect x="262" y="330" width="204" height="200" rx="12" fill="#FFFFFF" stroke="#7B4FC4" stroke-width="1.5"/>
+<path d="M262 342 a12 12 0 0 1 12 -12 h180 a12 12 0 0 1 12 12 v30 h-204 z" fill="#F1EAFB" stroke="none"/>
+<circle cx="284" cy="351" r="12" fill="#7B4FC4"/>
+<text x="284" y="355.5" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">6</text>
+<text x="304" y="356" font-size="14" font-weight="bold" fill="#4C2B85" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">Document 문서화</text>
+<text x="276" y="398" font-size="11.5" font-weight="bold" fill="#7B4FC4" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">AI</text>
+<text x="276" y="418" font-size="12.5" font-weight="normal" fill="#1F2933" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">워크숍 페이지·구성도·번역</text>
+<text x="276" y="448" font-size="11.5" font-weight="bold" fill="#7B4FC4" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">사람</text>
+<text x="276" y="468" font-size="12.5" font-weight="normal" fill="#1F2933" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">교육 흐름과 난이도 조정</text>
+<line x1="276" y1="486" x2="452" y2="486" stroke="#D5DAE1"/>
+<text x="276" y="510" font-size="12" font-weight="normal" fill="#52606D" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">산출물  content/ · *.svg</text>
+<rect x="494" y="330" width="204" height="200" rx="12" fill="#FFFFFF" stroke="#5B6573" stroke-width="1.5"/>
+<path d="M494 342 a12 12 0 0 1 12 -12 h180 a12 12 0 0 1 12 12 v30 h-204 z" fill="#EEF0F3" stroke="none"/>
+<circle cx="516" cy="351" r="12" fill="#5B6573"/>
+<text x="516" y="355.5" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">7</text>
+<text x="536" y="356" font-size="14" font-weight="bold" fill="#2F3640" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">Review 리뷰</text>
+<text x="508" y="398" font-size="11.5" font-weight="bold" fill="#5B6573" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">AI</text>
+<text x="508" y="418" font-size="12.5" font-weight="normal" fill="#1F2933" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">독립 리뷰어가 교차 검토</text>
+<text x="508" y="448" font-size="11.5" font-weight="bold" fill="#5B6573" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">사람</text>
+<text x="508" y="468" font-size="12.5" font-weight="normal" fill="#1F2933" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">지적 사항을 코드와 대조</text>
+<line x1="508" y1="486" x2="684" y2="486" stroke="#D5DAE1"/>
+<text x="508" y="510" font-size="12" font-weight="normal" fill="#52606D" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">산출물  review.md</text>
+<rect x="726" y="330" width="204" height="200" rx="12" fill="#FFFFFF" stroke="#5B6573" stroke-width="1.5"/>
+<path d="M726 342 a12 12 0 0 1 12 -12 h180 a12 12 0 0 1 12 12 v30 h-204 z" fill="#EEF0F3" stroke="none"/>
+<circle cx="748" cy="351" r="12" fill="#5B6573"/>
+<text x="748" y="355.5" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">8</text>
+<text x="768" y="356" font-size="14" font-weight="bold" fill="#2F3640" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">Package 자산화·정리</text>
+<text x="740" y="398" font-size="11.5" font-weight="bold" fill="#5B6573" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">AI</text>
+<text x="740" y="418" font-size="12.5" font-weight="normal" fill="#1F2933" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">skill로 자산화, 리소스 삭제</text>
+<text x="740" y="448" font-size="11.5" font-weight="bold" fill="#5B6573" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">사람</text>
+<text x="740" y="468" font-size="12.5" font-weight="normal" fill="#1F2933" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">재사용 범위·잔여 비용 확인</text>
+<line x1="740" y1="486" x2="916" y2="486" stroke="#D5DAE1"/>
+<text x="740" y="510" font-size="12" font-weight="normal" fill="#52606D" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">산출물  SKILL.md</text>
+<line x1="236" y1="164.0" x2="260" y2="164.0" stroke="#5B6573" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="468" y1="164.0" x2="492" y2="164.0" stroke="#5B6573" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="700" y1="164.0" x2="724" y2="164.0" stroke="#5B6573" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="236" y1="430.0" x2="260" y2="430.0" stroke="#5B6573" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="468" y1="430.0" x2="492" y2="430.0" stroke="#5B6573" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="700" y1="430.0" x2="724" y2="430.0" stroke="#5B6573" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M828.0 264 V286 H132.0 V328" fill="none" stroke="#5B6573" stroke-width="1.6" marker-end="url(#arr)"/>
+<text x="44" y="550" font-size="11.5" font-weight="bold" fill="#8A4D12" text-anchor="start" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">→ 원인을 고치면 3 Build부터 다시</text>
+<path d="M596.0 530 V548 H364.0 V532" fill="none" stroke="#7B4FC4" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#arr)"/>
+<text x="480.0" y="544" font-size="11.5" font-weight="bold" fill="#4C2B85" text-anchor="middle" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">지적 사항 반영</text>
+</svg>

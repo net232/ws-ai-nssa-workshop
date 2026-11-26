@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="960" height="540" font-family="Noto Sans CJK KR, Noto Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif">
+  <title>Claude Code 구성 요소</title>
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+    <style>
+      text{font-family:'Noto Sans CJK KR','Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif}
+      .t{font-size:14px;fill:#0f172a;font-weight:600}
+      .s{font-size:12px;fill:#334155}
+      .x{font-size:11px;fill:#64748b}
+      .h{font-size:13px;font-weight:700;letter-spacing:.5px}
+      .ln{stroke:#475569;stroke-width:1.6;fill:none}
+      .dl{stroke:#94a3b8;stroke-width:1.4;fill:none;stroke-dasharray:5 4}
+    </style>
+  </defs>
+  <rect width="960" height="540" fill="#ffffff"/>
+
+  <!-- 상단: 컨텍스트(매 세션 자동으로 읽는 것) -->
+  <text x="250" y="28" class="h" fill="#7c3aed">① 컨텍스트 — 세션을 시작할 때 읽음</text>
+  <rect x="250" y="40" width="200" height="92" rx="10" fill="#f5f3ff" stroke="#7c3aed"/>
+  <text x="264" y="64" class="t">CLAUDE.md 계층</text>
+  <text x="264" y="84" class="s">~/.claude/CLAUDE.md (개인)</text>
+  <text x="264" y="101" class="s">./CLAUDE.md → @AGENTS.md</text>
+  <text x="264" y="118" class="s">하위 폴더 CLAUDE.md</text>
+  <rect x="465" y="40" width="200" height="92" rx="10" fill="#f5f3ff" stroke="#7c3aed"/>
+  <text x="479" y="64" class="t">settings.json</text>
+  <text x="479" y="84" class="s">permissions allow·ask·deny</text>
+  <text x="479" y="101" class="s">hooks (PreToolUse …)</text>
+  <text x="479" y="118" class="s">env (Bedrock·리전 변수)</text>
+  <rect x="680" y="40" width="130" height="92" rx="10" fill="#f5f3ff" stroke="#7c3aed"/>
+  <text x="694" y="64" class="t">Auto memory</text>
+  <text x="694" y="84" class="s">세션 사이에</text>
+  <text x="694" y="101" class="s">배운 것 기록</text>
+  <text x="694" y="118" class="x">/memory 로 확인</text>
+
+  <!-- 사용자 -->
+  <rect x="24" y="210" width="160" height="120" rx="12" fill="#f8fafc" stroke="#334155"/>
+  <text x="104" y="246" class="t" text-anchor="middle">사용자 (SA)</text>
+  <text x="104" y="268" class="s" text-anchor="middle">프롬프트 · @파일</text>
+  <text x="104" y="285" class="s" text-anchor="middle">! 셸 · /명령</text>
+  <text x="104" y="302" class="s" text-anchor="middle">승인 · 중단(Esc)</text>
+  <text x="104" y="319" class="x" text-anchor="middle">Shift+Tab: 모드 전환</text>
+
+  <!-- 세션 -->
+  <rect x="250" y="170" width="560" height="200" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="270" y="198" class="h" fill="#1d4ed8">Claude Code 세션 (에이전트 루프)</text>
+  <rect x="274" y="214" width="150" height="132" rx="10" fill="#ffffff" stroke="#93c5fd"/>
+  <text x="349" y="242" class="t" text-anchor="middle">모델</text>
+  <text x="349" y="262" class="s" text-anchor="middle">Amazon Bedrock</text>
+  <text x="349" y="279" class="x" text-anchor="middle">us-east-1</text>
+  <text x="349" y="304" class="s" text-anchor="middle">생각 → 도구 호출</text>
+  <text x="349" y="321" class="s" text-anchor="middle">→ 결과 보고 반복</text>
+  <rect x="444" y="214" width="166" height="132" rx="10" fill="#ffffff" stroke="#93c5fd"/>
+  <text x="527" y="242" class="t" text-anchor="middle">권한 모드</text>
+  <text x="527" y="264" class="s" text-anchor="middle">manual(기본) · plan</text>
+  <text x="527" y="281" class="s" text-anchor="middle">acceptEdits · auto</text>
+  <text x="527" y="306" class="x" text-anchor="middle">허용되지 않은 도구는</text>
+  <text x="527" y="321" class="x" text-anchor="middle">실행 전에 사용자에게 물음</text>
+  <rect x="630" y="214" width="160" height="132" rx="10" fill="#ffffff" stroke="#93c5fd"/>
+  <text x="710" y="242" class="t" text-anchor="middle">내장 도구</text>
+  <text x="710" y="264" class="s" text-anchor="middle">Read · Edit · Write</text>
+  <text x="710" y="281" class="s" text-anchor="middle">Bash · Grep · Glob</text>
+  <text x="710" y="298" class="s" text-anchor="middle">WebFetch · WebSearch</text>
+  <text x="710" y="321" class="x" text-anchor="middle">hook이 실행 전후 점검</text>
+
+  <!-- 하단: 확장 -->
+  <text x="24" y="440" class="h" fill="#047857">② 확장 — 필요할 때 불러 씀</text>
+  <rect x="250" y="414" width="175" height="100" rx="10" fill="#ecfdf5" stroke="#059669"/>
+  <text x="264" y="438" class="t">Skills</text>
+  <text x="264" y="458" class="s">.claude/skills/*/SKILL.md</text>
+  <text x="264" y="475" class="s">절차·템플릿 묶음</text>
+  <text x="264" y="492" class="x">/이름 또는 자동 로드</text>
+  <rect x="440" y="414" width="175" height="100" rx="10" fill="#ecfdf5" stroke="#059669"/>
+  <text x="454" y="438" class="t">Subagents</text>
+  <text x="454" y="458" class="s">.claude/agents/*.md</text>
+  <text x="454" y="475" class="s">독립 컨텍스트에서 작업</text>
+  <text x="454" y="492" class="x">예: net-reviewer</text>
+  <rect x="630" y="414" width="180" height="100" rx="10" fill="#ecfdf5" stroke="#059669"/>
+  <text x="644" y="438" class="t">MCP 서버</text>
+  <text x="644" y="458" class="s">AWS Knowledge (문서)</text>
+  <text x="644" y="475" class="s">AWS IaC (cfn-lint·guard)</text>
+  <text x="644" y="492" class="x">.mcp.json / claude mcp add</text>
+
+  <!-- 오른쪽: 대상 -->
+  <rect x="852" y="180" width="92" height="84" rx="10" fill="#fff7ed" stroke="#ea580c"/>
+  <text x="898" y="210" class="t" text-anchor="middle">AWS 계정</text>
+  <text x="898" y="230" class="x" text-anchor="middle">ap-northeast-2</text>
+  <text x="898" y="247" class="x" text-anchor="middle">aws CLI · CFN</text>
+  <rect x="852" y="282" width="92" height="84" rx="10" fill="#fff7ed" stroke="#ea580c"/>
+  <text x="898" y="312" class="t" text-anchor="middle">로컬 파일</text>
+  <text x="898" y="332" class="x" text-anchor="middle">코드 · 문서</text>
+  <text x="898" y="349" class="x" text-anchor="middle">git</text>
+
+  <!-- 연결 -->
+  <path class="ln" d="M184,270 L246,270" marker-end="url(#arr)"/>
+  <path class="ln" d="M246,290 L188,290" marker-end="url(#arr)"/>
+  <path class="dl" d="M350,132 L350,166" marker-end="url(#arr)"/>
+  <path class="dl" d="M565,132 L565,166" marker-end="url(#arr)"/>
+  <path class="dl" d="M745,132 L745,166" marker-end="url(#arr)"/>
+  <path class="dl" d="M337,410 L337,374" marker-end="url(#arr)"/>
+  <path class="dl" d="M527,410 L527,374" marker-end="url(#arr)"/>
+  <path class="dl" d="M720,410 L720,374" marker-end="url(#arr)"/>
+  <path class="ln" d="M790,250 L848,226" marker-end="url(#arr)"/>
+  <path class="ln" d="M790,310 L848,322" marker-end="url(#arr)"/>
+  <text x="24" y="380" class="x">실선: 실행 흐름</text>
+  <text x="24" y="398" class="x">점선: 세션에 더해지는 컨텍스트·확장</text>
+</svg>
