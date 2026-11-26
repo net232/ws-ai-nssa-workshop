@@ -667,7 +667,57 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#matt-pocock-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matt Pocock skills와 연결
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Matt Pocock skills와 연결">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        단계별 적합도
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        세 가지 원칙과의 대응
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        사례: 이 워크숍을 만든 과정
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
         두 트랙의 아키텍처
@@ -1129,7 +1179,57 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#matt-pocock-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matt Pocock skills와 연결
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Matt Pocock skills와 연결">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        단계별 적합도
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        세 가지 원칙과의 대응
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        사례: 이 워크숍을 만든 과정
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
         두 트랙의 아키텍처
@@ -1168,6 +1268,7 @@
 <th>AI에게 맡기는 일</th>
 <th>사람이 판단할 일</th>
 <th>Claude Code 기능</th>
+<th>Matt Pocock skill</th>
 <th>Lab</th>
 </tr>
 </thead>
@@ -1178,6 +1279,7 @@
 <td>What's New, 사용자 가이드, API·CLI·CloudFormation 지원 범위, 리전, 쿼터 조사</td>
 <td>출처가 공식 문서인지 확인하고 테스트 범위를 정함</td>
 <td>AWS MCP 서버 (문서 검색)</td>
+<td>◎ <code>/research</code></td>
 <td>Lab 1</td>
 </tr>
 <tr>
@@ -1186,6 +1288,7 @@
 <td>테스트 매트릭스나 워크숍 스토리보드 초안, 성공 기준, 비용 추정</td>
 <td>시나리오와 비용 승인</td>
 <td>plan mode, skill (<code>net-test-plan</code>)</td>
+<td>◎ <code>/grill-me</code>, <code>/to-questionnaire</code></td>
 <td>Lab 1, 5</td>
 </tr>
 <tr>
@@ -1194,6 +1297,7 @@
 <td>CloudFormation, 인증서·테스트 스크립트 생성</td>
 <td>보안 그룹·IAM·비용 검토</td>
 <td><code>cfn-lint</code>, 권한 규칙</td>
+<td>△ <code>/prototype</code>, <code>wizard</code></td>
 <td>Lab 2, 5</td>
 </tr>
 <tr>
@@ -1202,6 +1306,7 @@
 <td>배포, 테스트 실행, 증적(명령 출력·로그) 수집, 결과표 작성</td>
 <td>기대값과 실제값이 다를 때 원인이 테스트인지 기능인지 판단</td>
 <td>Bash, SSM, 백그라운드 작업</td>
+<td>△ <code>/tdd</code>(원칙만)</td>
 <td>Lab 3</td>
 </tr>
 <tr>
@@ -1210,6 +1315,7 @@
 <td>가설을 세우고 <code>describe-*</code>·로그·Reachability Analyzer로 근거 수집</td>
 <td>근본 원인 확정, 수정 승인</td>
 <td>plan mode, 읽기 전용 권한</td>
+<td>◎ <code>diagnosing-bugs</code></td>
 <td>Lab 4</td>
 </tr>
 <tr>
@@ -1218,6 +1324,7 @@
 <td>Workshop Studio 페이지, 구성도, 번역</td>
 <td>교육 흐름과 난이도 조정</td>
 <td>skill (구성도, 번역)</td>
+<td>× (구성도·번역 skill로 채움)</td>
 <td>Lab 5</td>
 </tr>
 <tr>
@@ -1226,6 +1333,7 @@
 <td>작성자와 분리된 리뷰어가 교차 검토</td>
 <td>지적 사항을 실제 코드와 대조</td>
 <td>subagent, 다른 모델(Codex CLI)</td>
+<td>◎ <code>/mattpocock-skills:code-review</code></td>
 <td>Lab 6</td>
 </tr>
 <tr>
@@ -1234,10 +1342,12 @@
 <td>반복 절차를 skill로 만들기, 리소스 삭제</td>
 <td>재사용 범위, 남은 비용 확인</td>
 <td>skill, hook</td>
+<td>◎ <code>/retro</code>, <code>/handoff</code></td>
 <td>Lab 6, 정리</td>
 </tr>
 </tbody>
 </table>
+<p>표의 Matt Pocock skill 열은 <a href="../10-claude-code-basics/16-mattpocock-skills/">1-6</a>에서 써 본 skill이 어느 단계에 들어가는지를 보여 줍니다. ◎는 그대로 적용, △는 원칙만 가져옴, ×는 대상이 다름을 뜻합니다. 아래 "Matt Pocock skills와 연결"에서 자세히 다룹니다.</p>
 <h2 id="_2">세 가지 원칙<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <h3 id="1">1. 단계마다 산출물을 파일로 남긴다<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
 <p><code>research.md</code> → <code>test-plan.md</code> → <code>*.yaml</code> → <code>results.md</code> → <code>rca.md</code> 순서로 파일이 쌓입니다. 다음 단계의 Claude는 대화 기록이 아니라 이 파일을 읽고 작업합니다. 그래서 <code>/clear</code>로 컨텍스트를 비워도 작업이 이어지고, 동료에게 넘기기도 쉽습니다.</p>
@@ -1278,7 +1388,139 @@
 </table>
 <h3 id="3">3. 한 번 더 할 일은 자산으로 만든다<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
 <p>두 번째로 같은 일을 시키게 되면 skill로 만듭니다. Lab 6에서는 Lab 1–4의 흐름을 <code>net-feature-test</code> skill로 만듭니다. 다음 신규 기능이 나오면 <code>/net-feature-test &lt;기능 이름&gt;</code>으로 시작할 수 있습니다.</p>
-<h2 id="_3">두 트랙의 아키텍처<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="matt-pocock-skills">Matt Pocock skills와 연결<a class="headerlink" href="#matt-pocock-skills" title="Permanent link">&para;</a></h2>
+<p>1-6에서 써 본 Matt Pocock skills는 소프트웨어 개발용으로 만들어졌지만, 흐름이 이 라이프사이클과 거의 같습니다. Matt Pocock의 기본 흐름은 아이디어 검증(grill) → 스펙 → 티켓 → 구현(TDD) → 리뷰 → 회고입니다. 그렇다고 모든 단계에 그대로 들어맞지는 않습니다. 단계마다 얼마나 맞는지 구분해서 써야 합니다.</p>
+<p><img alt="라이프사이클 단계별 Matt Pocock skills" src="../static/images/lifecycle-mattpocock.svg" /></p>
+<h3 id="_3">단계별 적합도<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>적합도</th>
+<th>단계</th>
+<th>이렇게 씁니다</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>◎ 그대로 적용</td>
+<td>1 Discover — <code>/research</code></td>
+<td>1차 출처만 쓰고 주장마다 출처를 붙이는 규칙이 Discover의 검증 기준("모든 사실에 공식 URL")과 같습니다. 백그라운드로 조사하는 동안 다른 일을 할 수 있습니다.</td>
+</tr>
+<tr>
+<td>◎</td>
+<td>2 Plan — <code>/grill-me</code>, <code>/to-questionnaire</code></td>
+<td>결정은 사람에게 묻고 사실은 직접 찾습니다. 표의 "사람이 판단할 일" 열을 질문으로 바꿔 주는 셈입니다. 서비스팀이나 고객만 답할 수 있는 결정은 <code>/to-questionnaire</code>로 질문지를 만듭니다.</td>
+</tr>
+<tr>
+<td>◎</td>
+<td>5 Troubleshoot — <code>diagnosing-bugs</code></td>
+<td>가설보다 <strong>실패하는 명령 하나</strong>를 먼저 만듭니다. Lab 4에서는 매트릭스의 한 줄(openssl 명령)이 그 명령입니다. 원인을 고친 뒤에도 같은 명령으로 확인합니다.</td>
+</tr>
+<tr>
+<td>◎</td>
+<td>7 Review — <code>/mattpocock-skills:code-review</code></td>
+<td>Standards(<code>AGENTS.md</code> 규칙을 지켰는가)와 Spec(<code>test-plan.md</code>의 요구를 만족하는가) 두 축을 subagent 두 개가 따로 봅니다. 작성자와 분리된 독립 리뷰 원칙과 같습니다.</td>
+</tr>
+<tr>
+<td>◎</td>
+<td>8 Package — <code>/retro</code>, <code>/handoff</code></td>
+<td><code>/retro</code>는 세션을 돌아보고 코드가 아니라 작업 환경(<code>AGENTS.md</code>, hook, skill)을 고치자고 제안합니다. <code>/handoff</code>는 다음 세션이 이어받을 문서를 남깁니다.</td>
+</tr>
+<tr>
+<td>△ 원칙만</td>
+<td>3 Build — <code>/prototype</code>, <code>wizard</code></td>
+<td>IaC를 만드는 핵심 작업에 해당하는 skill은 없습니다. 설계 질문 하나를 눌러 볼 수 있는 HTML 시안으로 먼저 확인하거나(<code>/prototype</code>), 콘솔 클릭처럼 사람만 할 수 있는 단계를 안내 스크립트로 만들 때(<code>wizard</code>) 보조로 씁니다.</td>
+</tr>
+<tr>
+<td>△ 원칙만</td>
+<td>4 Verify — <code>/tdd</code></td>
+<td><code>/tdd</code>는 테스트할 경계(공개 인터페이스)를 사용자와 먼저 정하고, 코드를 고쳐 가며 실패 → 통과를 반복하는 절차입니다. 네트워크 기능 테스트에는 고쳐 나갈 애플리케이션 코드가 없으므로 절차를 그대로 쓰지 않습니다. 대신 "테스트할 경계를 먼저 합의하고, 기대 결과를 먼저 적고, 실패하는 것을 본 뒤 통과시킨다"는 원칙만 가져옵니다. 이 워크숍에서는 테스트 계획서의 기대값과 배포 전 <code>local-rehearsal.sh</code>가 그 역할을 합니다.</td>
+</tr>
+<tr>
+<td>× 대상이 다름</td>
+<td>6 Document — <code>writing-for-agents</code></td>
+<td><code>writing-for-agents</code>는 <code>AGENTS.md</code>나 <code>SKILL.md</code>처럼 <strong>agent가 읽는</strong> 문서를 쓰는 원칙입니다. 사람이 읽는 워크숍 페이지에는 맞지 않습니다. 이 단계는 구성도 skill과 번역 skill(Lab 5)로 채웁니다. 대신 Lab 6에서 skill을 만들 때 <code>writing-for-agents</code>를 씁니다.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">맞지 않는 단계에 억지로 끼우지 않습니다</p>
+<p>skill도 결국 프롬프트입니다. 단계와 맞지 않는 skill을 쓰면 엉뚱한 절차를 따르게 됩니다. 예를 들어 <code>/tdd</code>는 코드를 고쳐 가며 테스트를 통과시키는 절차라서, 고칠 코드가 없는 네트워크 테스트에서는 절차의 절반이 헛돕니다. 맞지 않는 단계는 원칙만 가져오거나, Lab 6처럼 그 단계에 맞는 skill을 직접 만듭니다.</p>
+</div>
+<h3 id="_4">세 가지 원칙과의 대응<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>이 워크숍의 원칙</th>
+<th>Matt Pocock skills의 장치</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. 단계마다 산출물을 파일로 남긴다</td>
+<td><code>/handoff</code>는 대화를 인수인계 문서로 압축해 임시 폴더에 저장하고, <code>/to-spec</code>은 대화를 스펙으로 정리해 이슈 트래커에 올립니다. 둘 다 <code>/clear</code> 뒤에도 작업을 이어 가게 하는 장치입니다.</td>
+</tr>
+<tr>
+<td>2. 넘어가기 전에 검증한다</td>
+<td>각 skill의 <strong>완료 조건</strong>. 예: <code>diagnosing-bugs</code>는 "이미 한 번 실행해서 실패를 확인한 명령"이 있어야 다음 단계로 갑니다.</td>
+</tr>
+<tr>
+<td>3. 한 번 더 할 일은 자산으로 만든다</td>
+<td><code>/retro</code>: 이번 세션에서 겪은 문제를 <code>AGENTS.md</code> 규칙, 자동 검사, skill로 바꾸자고 제안합니다.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">사례: 이 워크숍을 만든 과정<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>이 워크숍 자료도 같은 흐름으로 만들었습니다. Lab 5(워크숍 만들기)에서 참고할 수 있는 실제 순서입니다.</p>
+<table>
+<thead>
+<tr>
+<th>순서</th>
+<th>한 일</th>
+<th>사용한 skill</th>
+<th>라이프사이클</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>저장소에 이슈 트래커·라벨·도메인 문서 규약 설정</td>
+<td><code>/setup-matt-pocock-skills</code></td>
+<td>(준비)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>형식, 참석자 환경, 일정, 배포 범위 같은 설계 결정을 질문 8개로 정리</td>
+<td><code>/grill-me</code></td>
+<td>2 Plan</td>
+</tr>
+<tr>
+<td>3</td>
+<td>대화 내용을 사용자 스토리 64개짜리 스펙 이슈로 정리</td>
+<td><code>/to-spec</code></td>
+<td>2 Plan</td>
+</tr>
+<tr>
+<td>4</td>
+<td>참석자 사전 설문 작성</td>
+<td><code>/to-questionnaire</code></td>
+<td>2 Plan</td>
+</tr>
+<tr>
+<td>5</td>
+<td>강사 이벤트 준비 절차를 8단계 안내 스크립트로 작성</td>
+<td><code>wizard</code></td>
+<td>3 Build</td>
+</tr>
+<tr>
+<td>6</td>
+<td>정적 검사 + 실제 계정 리허설 + 다른 모델의 독립 리뷰</td>
+<td>(직접 구성)</td>
+<td>4 Verify, 7 Review</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_6">두 트랙의 아키텍처<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Track A — NLB mTLS 테스트 환경</label><label for="__tabbed_1_2">Track B — TGW에서 Cloud WAN으로</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">

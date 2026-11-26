@@ -1248,6 +1248,7 @@ claude<span class="w"> </span>plugin<span class="w"> </span>install<span class="
 </table>
 <p>예를 들어 "이 NLB 연결 문제 디버깅해 줘"라고만 입력해도 Claude가 <code>diagnosing-bugs</code>를 불러올 수 있습니다. 이렇게 Claude가 스스로 불러오는 skill은 description이 언제 쓸지를 알려 주는 트리거 역할을 합니다. Lab 6에서 <code>net-feature-test</code> skill에 <code>disable-model-invocation: true</code>를 넣는 것도 같은 원리입니다. 배포까지 이어지는 절차는 사람이 직접 시작할 때만 실행되게 하려는 것입니다.</p>
 <h2 id="3-networking-sa-skill">3. Networking SA를 위한 추천 skill<a class="headerlink" href="#3-networking-sa-skill" title="Permanent link">&para;</a></h2>
+<p>아래 표는 skill이 무엇을 하는지 정리한 참고표입니다. 각 skill이 라이프사이클 단계에 그대로 맞는지, 원칙만 가져와야 하는지는 <a href="../../20-lifecycle/">2. 라이프사이클 개요</a>의 "Matt Pocock skills와 연결"에서 다룹니다.</p>
 <table>
 <thead>
 <tr>
@@ -1285,8 +1286,8 @@ claude<span class="w"> </span>plugin<span class="w"> </span>install<span class="
 <tr>
 <td>3 Build</td>
 <td><code>/prototype</code></td>
-<td>설계 질문 하나에 답하기 위한 <strong>버릴 코드</strong>를 만듭니다.</td>
-<td>정책 문서 구조 같은 아이디어를 빠르게 시험</td>
+<td>설계 질문 하나에 답하기 위한 <strong>버릴 시안</strong>을 만듭니다. 로직이나 상태 모델을 눌러 볼 수 있는 HTML 한 장, 또는 UI 시안 여러 개입니다.</td>
+<td>예: Cloud WAN 세그먼트와 attachment 규칙을 눌러 보는 HTML로 정책 설계를 먼저 확인</td>
 </tr>
 <tr>
 <td>3 Build</td>
@@ -1307,10 +1308,10 @@ claude<span class="w"> </span>plugin<span class="w"> </span>install<span class="
 <td>Module 1.2, Lab 6: skill 작성</td>
 </tr>
 <tr>
-<td>6 Document</td>
+<td>(학습)</td>
 <td><code>/teach</code></td>
-<td>지금 작업 공간 안에서 개념이나 기술을 가르쳐 줍니다.</td>
-<td>새 서비스 개념 학습</td>
+<td>지금 작업 폴더를 학습 공간으로 삼아, 여러 세션에 걸쳐 개념을 가르칩니다. 수업은 HTML로 만들어집니다.</td>
+<td>새 서비스 개념을 미리 공부할 때</td>
 </tr>
 <tr>
 <td>7 Review</td>
@@ -1362,7 +1363,7 @@ claude<span class="w"> </span>plugin<span class="w"> </span>install<span class="
 <li>triage 라벨</li>
 <li>도메인 문서 위치: <code>GLOSSARY.md</code>, <code>docs/adr/</code></li>
 </ul>
-<p>저장소에서 처음 쓸 때 <code>/setup-matt-pocock-skills</code>를 한 번 실행합니다. 이 skill은 저장소를 먼저 살펴보고 추천값을 보여 준 뒤, 사용자가 확인하면 <code>docs/agents/</code> 아래에 설정 문서를 쓰고 <code>AGENTS.md</code>에 <code>## Agent skills</code> 섹션을 추가합니다.</p>
+<p>저장소에서 처음 쓸 때 <code>/setup-matt-pocock-skills</code>를 한 번 실행합니다. 이 skill은 저장소를 먼저 살펴보고 추천값을 보여 준 뒤, 사용자가 확인하면 <code>docs/agents/</code> 아래에 설정 문서를 씁니다. 그리고 <code>CLAUDE.md</code>가 있으면 그 파일에, 없으면 <code>AGENTS.md</code>에 <code>## Agent skills</code> 섹션을 추가합니다. 이 워크숍의 starter kit처럼 <code>CLAUDE.md</code>가 <code>@AGENTS.md</code>만 불러오는 구조라면, 규칙이 한곳에 모이도록 <code>AGENTS.md</code>에 넣어 달라고 직접 말해 줍니다.</p>
 <details class="note">
 <summary>예: 이 워크숍 저장소에 적용한 결과</summary>
 <p><div class="highlight"><pre><span></span><code><span class="gu">## Agent skills</span>
