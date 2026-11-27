@@ -1164,6 +1164,23 @@
 </table>
 <p>스크립트는 5-2 4단계에서 <code>~/ws-solutions/cloudwan/scripts/</code>로부터 <code>scripts/</code>에 복사해 두었습니다. 모든 스택은 <code>--tags Project=ws-ai-nssa</code>로 배포되므로 <a href="../../90-cleanup/">정리</a>의 태그 조회에도 잡힙니다.</p>
 <p><code>deploy.sh</code>는 병렬로 띄운 배포를 PID마다 기다려 하나라도 실패하면 멈춥니다. cut-over는 기존 경로를 지우는 되돌리기 어려운 작업이라, Cloud WAN이 상대 리전 경로를 이미 갖고 있는지 확인(<code>precheck</code>)한 뒤에만 진행합니다. <code>deploy.sh</code>는 TGW peering 수락(도쿄)처럼 CloudFormation 밖에서 해야 하는 일도 포함합니다. <code>aws ec2 wait</code>에는 TGW attachment용 waiter가 없어서 상태를 직접 폴링합니다. AI가 없는 waiter(<code>transit-gateway-attachment-available</code> 등)를 쓰는 경우가 많으니 <code>aws ec2 wait help</code>로 확인하세요.</p>
+<details class="note">
+<summary>선택 실습: cutover를 wizard로 만들기</summary>
+<p>cutover(4단계)는 기존 정적 경로와 TGW peering을 지우는 <strong>되돌리기 어려운 전환</strong>입니다. <code>wizard</code> skill의 원문이 쓰임새로 드는 "one-off migration or cutover"에 해당합니다. <code>deploy.sh cutover</code>는 사전 확인(<code>precheck</code>)이 통과하면 바로 지웁니다. 실제 고객 환경에서는 사람이 단계마다 결과를 보고 승인하는 편이 안전합니다.</p>
+<p>Claude Code에 입력:</p>
+<div class="highlight"><pre><span></span><code>/mattpocock-skills:wizard TGW → Cloud WAN cutover를 사람이 단계마다 확인하며 진행하는 wizard를 scripts/cutover-wizard.sh로 만들어 줘.
+단계: (1) 계정·리전 확인 (2) deploy.sh precheck 실행 결과를 보여 주고 승인 받기 (3) 변경 시간대와 롤백 담당자 기록 (4) 정적 경로 스택(routes-*) 삭제 전 최종 확인 후 삭제 (5) TGW peering 스택(peering) 삭제 전 최종 확인 후 삭제. deploy.sh cutover와 같은 순서로 (6) 삭제 후 show-routes.sh 결과를 보여 주고 원격 CIDR이 propagated로 바뀌었는지, prod·dev 격리가 유지되는지 확인.
+값은 .env에 저장하고, 삭제 명령 앞에는 confirm을 꼭 넣어 줘. 실제 실행은 하지 말고 bash -n까지만.
+</code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">확인할 점</p>
+<ul>
+<li>되돌릴 수 없는 명령(routes-* 스택과 peering 스택 삭제) 바로 앞에 각각 <code>confirm</code>이 있는가?</li>
+<li><code>precheck</code>가 실패하면 wizard가 멈추는가?</li>
+<li>롤백 방법이 wizard 안에 적혀 있는가? 예: <code>deploy.sh before</code>의 routes·peering 스택을 다시 만드는 것</li>
+</ul>
+</div>
+</details>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p><strong>리허설에서 확인할 열린 질문</strong></p>

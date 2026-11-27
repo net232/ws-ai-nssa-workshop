@@ -720,6 +720,17 @@
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
+        단계별 예시 프롬프트
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
         두 트랙의 아키텍처
       
     </span>
@@ -1232,6 +1243,17 @@
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
+        단계별 예시 프롬프트
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
         두 트랙의 아키텍처
       
     </span>
@@ -1274,10 +1296,10 @@
 <tbody>
 <tr>
 <td>1</td>
-<td>Discover 조사</td>
-<td>What's New, 사용자 가이드, API·CLI·CloudFormation 지원 범위, 리전, 쿼터 조사</td>
-<td>출처가 공식 문서인지 확인하고 테스트 범위를 정함</td>
-<td>AWS MCP 서버 (문서 검색)<br>◎ <code>/research</code></td>
+<td>Discover 목표·조사</td>
+<td>목표·대상·범위·성공 기준을 인터뷰로 정리한 뒤, 그 범위에 맞춰 What's New, 사용자 가이드, API·CLI·CloudFormation 지원 범위, 리전, 쿼터 조사</td>
+<td>목표와 범위를 정하고, 출처가 공식 문서인지 확인</td>
+<td>AWS MCP 서버 (문서 검색)<br>◎ <code>/grill-me</code> → <code>/research</code></td>
 <td>Lab 1</td>
 </tr>
 <tr>
@@ -1291,9 +1313,9 @@
 <tr>
 <td>3</td>
 <td>Build 구축</td>
-<td>CloudFormation, 인증서·테스트 스크립트 생성</td>
-<td>보안 그룹·IAM·비용 검토</td>
-<td><code>cfn-lint</code>, 권한 규칙<br>△ <code>/prototype</code>, <code>wizard</code></td>
+<td>CloudFormation, 인증서·테스트 스크립트 생성. 콘솔·승인·전환처럼 사람이 해야 하는 단계는 안내 스크립트로 만듦</td>
+<td>보안 그룹·IAM·비용 검토, 사람 손 단계 직접 수행</td>
+<td><code>cfn-lint</code>, 권한 규칙<br>◎ <code>wizard</code>(사람 손) · △ <code>/implement</code>(IaC)</td>
 <td>Lab 2, 5</td>
 </tr>
 <tr>
@@ -1341,7 +1363,7 @@
 <p>표의 "Claude Code 기능 · Matt Pocock skill" 열 둘째 줄은 <a href="../10-claude-code-basics/16-mattpocock-skills/">1-6</a>에서 써 본 skill이 어느 단계에 들어가는지를 보여 줍니다. ◎는 그대로 적용, △는 원칙만 가져옴, ×는 대상이 다름을 뜻합니다. 아래 "Matt Pocock skills와 연결"에서 자세히 다룹니다.</p>
 <h2 id="_2">세 가지 원칙<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <h3 id="1">1. 단계마다 산출물을 파일로 남긴다<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
-<p><code>research.md</code> → <code>test-plan.md</code> → <code>*.yaml</code> → <code>results.md</code> → <code>rca.md</code> 순서로 파일이 쌓입니다. 다음 단계의 Claude는 대화 기록이 아니라 이 파일을 읽고 작업합니다. 그래서 <code>/clear</code>로 컨텍스트를 비워도 작업이 이어지고, 동료에게 넘기기도 쉽습니다.</p>
+<p><code>goal.md</code> → <code>research.md</code> → <code>test-plan.md</code> → <code>*.yaml</code> → <code>results.md</code> → <code>rca.md</code> 순서로 파일이 쌓입니다. 다음 단계의 Claude는 대화 기록이 아니라 이 파일을 읽고 작업합니다. 그래서 <code>/clear</code>로 컨텍스트를 비워도 작업이 이어지고, 동료에게 넘기기도 쉽습니다.</p>
 <h3 id="2_1">2. 다음 단계로 넘어가기 전에 검증한다<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -1353,7 +1375,7 @@
 <tbody>
 <tr>
 <td>Discover</td>
-<td>모든 사실에 공식 문서 URL이 붙어 있는가? 링크를 직접 열어 확인했는가?</td>
+<td>목표와 성공 기준이 <code>goal.md</code>에 먼저 적혀 있는가? 모든 사실에 공식 문서 URL이 붙어 있고, 링크를 직접 열어 확인했는가?</td>
 </tr>
 <tr>
 <td>Plan</td>
@@ -1382,6 +1404,7 @@
 <h2 id="matt-pocock-skills">Matt Pocock skills와 연결<a class="headerlink" href="#matt-pocock-skills" title="Permanent link">&para;</a></h2>
 <p>1-6에서 써 본 Matt Pocock skills는 소프트웨어 개발용으로 만들어졌지만, 흐름이 이 라이프사이클과 거의 같습니다. Matt Pocock의 기본 흐름은 아이디어 검증(grill) → 스펙 → 티켓 → 구현(TDD) → 리뷰 → 회고입니다. 그렇다고 모든 단계에 그대로 들어맞지는 않습니다. 단계마다 얼마나 맞는지 구분해서 써야 합니다.</p>
 <p><img alt="라이프사이클 단계별 Matt Pocock skills" src="../static/images/lifecycle-mattpocock.svg" /></p>
+<p>흐름은 한 방향으로만 가지 않고 앞 단계로 돌아옵니다. <strong>목표를 대략 정하고(<code>/grill-me</code>) → 그 범위로 조사하고(<code>/research</code>) → 조사 결과로 계획을 다시 검증합니다(<code>/grill-me</code>).</strong> <code>grilling</code> skill도 같은 방식으로 일합니다. 결정은 사람에게 묻고, 결정에 필요한 사실은 sub-agent를 보내 직접 찾아옵니다.</p>
 <h3 id="_3">단계별 적합도<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -1394,13 +1417,13 @@
 <tbody>
 <tr>
 <td>◎ 그대로 적용</td>
-<td>1 Discover — <code>/research</code></td>
-<td>1차 출처만 쓰고 주장마다 출처를 붙이는 규칙이 Discover의 검증 기준("모든 사실에 공식 URL")과 같습니다. 백그라운드로 조사하는 동안 다른 일을 할 수 있습니다.</td>
+<td>1 Discover — <code>/grill-me</code> → <code>/research</code></td>
+<td>먼저 짧은 <code>/grill-me</code>로 목표, 대상, 범위, 성공 기준을 정해 <code>goal.md</code>에 남깁니다. 그다음 그 범위에 맞춰 <code>/research</code>로 조사합니다. <code>/research</code>는 1차 출처만 쓰고 주장마다 출처를 붙이는데, 이 규칙이 Discover의 검증 기준("모든 사실에 공식 URL")과 같습니다. 목표 없이 조사부터 하면 범위가 끝없이 넓어집니다.</td>
 </tr>
 <tr>
 <td>◎</td>
 <td>2 Plan — <code>/grill-me</code>, <code>/to-questionnaire</code></td>
-<td>결정은 사람에게 묻고 사실은 직접 찾습니다. 표의 "사람이 판단할 일" 열을 질문으로 바꿔 주는 셈입니다. 서비스팀이나 고객만 답할 수 있는 결정은 <code>/to-questionnaire</code>로 질문지를 만듭니다.</td>
+<td>1단계에서 정한 목표로 이번에는 테스트 계획을 검증합니다. 결정은 사람에게 묻고 사실은 직접 찾습니다. 표의 "사람이 판단할 일" 열을 질문으로 바꿔 주는 셈입니다. 서비스팀이나 고객만 답할 수 있는 결정은 <code>/to-questionnaire</code>로 질문지를 만듭니다.</td>
 </tr>
 <tr>
 <td>◎</td>
@@ -1418,9 +1441,9 @@
 <td><code>/retro</code>는 세션을 돌아보고 코드가 아니라 작업 환경(<code>AGENTS.md</code>, hook, skill)을 고치자고 제안합니다. <code>/handoff</code>는 다음 세션이 이어받을 문서를 남깁니다.</td>
 </tr>
 <tr>
-<td>△ 원칙만</td>
-<td>3 Build — <code>/prototype</code>, <code>wizard</code></td>
-<td>IaC를 만드는 핵심 작업에 해당하는 skill은 없습니다. 설계 질문 하나를 눌러 볼 수 있는 HTML 시안으로 먼저 확인하거나(<code>/prototype</code>), 콘솔 클릭처럼 사람만 할 수 있는 단계를 안내 스크립트로 만들 때(<code>wizard</code>) 보조로 씁니다.</td>
+<td>◎ / △</td>
+<td>3 Build — <code>wizard</code>(사람 손 ◎), <code>/implement</code>(IaC △)</td>
+<td>Build는 두 부분으로 나뉩니다. <strong>사람 손이 필요한 구축</strong>에는 <code>wizard</code>가 그대로 맞습니다. 콘솔에서만 되는 설정, 다른 계정에서 RAM 공유 수락, Direct Connect LOA, 온프레미스 라우터 설정, 되돌릴 수 없는 전환(cutover)처럼 사람만 할 수 있는 단계를 하나씩 안내하고 확인을 받는 스크립트를 만듭니다. 원문 설명도 "provisioning infrastructure", "one-off migration or cutover"를 쓰임새로 듭니다. <strong>AI가 직접 하는 구축</strong>(IaC·스크립트 작성, CLI 배포)에는 <code>wizard</code>를 쓰지 않습니다(원문: agent가 할 수 있는 단계에는 쓰지 말 것). 여기에 가까운 것은 스펙을 받아 구현하고 리뷰하는 <code>/implement</code>입니다. 흐름은 같지만 타입 검사와 테스트 스위트를 전제로 하므로 원칙만 가져옵니다. <code>test-plan.md</code>가 스펙이고 <code>cfn-lint</code>와 <code>local-rehearsal.sh</code>가 테스트입니다.</td>
 </tr>
 <tr>
 <td>△ 원칙만</td>
@@ -1511,8 +1534,63 @@
 </tr>
 </tbody>
 </table>
-<h2 id="_6">두 트랙의 아키텍처<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Track A — NLB mTLS 테스트 환경</label><label for="__tabbed_1_2">Track B — TGW에서 Cloud WAN으로</label></div>
+<h2 id="_6">단계별 예시 프롬프트<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>Track A(NLB mTLS)를 예로 든 프롬프트입니다. 그대로 붙여 넣어도 되고, 목표와 범위만 바꿔 다른 기능에 써도 됩니다. 실제 Lab에서는 각 Lab 페이지의 프롬프트를 따릅니다.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:8"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><input id="__tabbed_1_7" name="__tabbed_1" type="radio" /><input id="__tabbed_1_8" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">1 목표·조사</label><label for="__tabbed_1_2">2 설계</label><label for="__tabbed_1_3">3 구축</label><label for="__tabbed_1_4">4 검증</label><label for="__tabbed_1_5">5 디버깅</label><label for="__tabbed_1_6">6 문서화</label><label for="__tabbed_1_7">7 리뷰</label><label for="__tabbed_1_8">8 자산화</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>목표부터 정합니다.</p>
+<div class="highlight"><pre><span></span><code>/grill-me 2026-11에 나온 NLB mutual TLS를 테스트하려고 해. 목적은 고객 데모와 사내 워크숍 소재야. 테스트 범위, 성공 기준, 쓸 수 있는 시간과 비용을 같이 정해 줘. 결정이 끝나면 goal.md로 정리해.
+</code></pre></div>
+<p>그 목표에 맞춰 조사합니다.</p>
+<div class="highlight"><pre><span></span><code>/research goal.md의 범위에 맞춰 NLB mTLS를 AWS 공식 문서로만 조사해 줘. 동작 모드, 인증서 요구 사항, trust store·CRL 제약, identity filter, access log 필드, CLI·CloudFormation 지원을 정리하고, 모든 행에 출처 URL을 붙여 research.md로 저장해. 문서끼리 다른 곳은 따로 모아 줘.
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>초안을 씁니다.</p>
+<div class="highlight"><pre><span></span><code>/net-test-plan goal.md와 research.md를 근거로 테스트 계획서를 test-plan.md로 만들어 줘.
+</code></pre></div>
+<p>계획을 검증합니다. <code>/grill-me</code>와 <code>/to-questionnaire</code>는 사용자만 호출할 수 있는 skill이라, Claude에게 "이어서 실행해"라고 맡길 수 없습니다. 하나씩 직접 입력합니다.</p>
+<div class="highlight"><pre><span></span><code>/grill-me test-plan.md를 검증해 줘. 빠진 실패 경로, 기대 결과가 애매한 케이스, 비용을 위주로.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>/to-questionnaire test-plan.md에서 서비스팀만 답할 수 있는 질문을 질문지로 만들어 줘.
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>AI가 직접 하는 구축입니다.</p>
+<div class="highlight"><pre><span></span><code>test-plan.md를 스펙으로 삼아 scripts/gen-certs.sh, scripts/local-rehearsal.sh, scripts/test-matrix.sh, infra/nlb-mtls.yaml을 만들어 줘. CloudFormation 속성은 research.md의 출처로 하나씩 대조하고, cfn-lint와 bash -n이 통과할 때까지 고쳐. 배포 명령은 실행하지 말고 보여만 줘.
+</code></pre></div>
+<p>사람 손이 필요한 구축입니다.</p>
+<div class="highlight"><pre><span></span><code>/mattpocock-skills:wizard 실습 계정 준비 중 내가 콘솔에서 해야 하는 단계를 wizard로 만들어 줘. Bedrock 모델 사용 신청, 계정과 리전 확인, 배포 승인이 들어가야 해. 값은 .env에 저장하고, 되돌릴 수 없는 단계 앞에는 확인을 넣어.
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>배포 전에 local-rehearsal.sh로 매트릭스를 먼저 돌려서, 기대값이 틀린 케이스가 있는지 봐 줘. 그다음 내가 승인하면 배포하고 test-matrix.sh를 base로 실행해. 이어서 apply-filters.sh on으로 identity filter를 적용하고, 반영될 때까지 3분 기다린 뒤 filter로 다시 실행해. 결과는 기대값, 실제값, 판정, 증적(로그 줄)을 표로 만들어 results.md에 저장해. 증적 없는 판정은 쓰지 마.
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>diagnosing-bugs 방식으로 진단해 줘. 먼저 이 문제가 재현되는 명령 하나(openssl s_client 한 줄)를 만들어 실패하는 것을 보여 줘. 그다음 describe 명령, target health, access log로 가설을 하나씩 확인하고, 수정은 내 승인 뒤에. 고친 뒤 같은 명령으로 다시 확인해서 rca.md에 정리해.
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>results.md와 rca.md를 바탕으로 Workshop Studio 형식 Lab 페이지를 써 줘. 명령은 scripts/의 실제 명령과 똑같이 쓰고, 검증 체크포인트를 넣어. 구성도는 skill-aws-arch-diagram으로 그려서 static/images/에 둬.
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p><code>code-review</code>는 커밋 기준점 이후의 변경(<code>git diff</code>)을 봅니다. 그래서 작업 폴더가 git 저장소이고, 리뷰할 산출물이 커밋되어 있어야 합니다. 예를 들어 Lab 1을 시작할 때 첫 커밋을 하고, 단계가 끝날 때마다 커밋합니다.</p>
+<div class="highlight"><pre><span></span><code>/mattpocock-skills:code-review 첫 커밋 이후 변경을 리뷰해 줘. Spec은 test-plan.md야. 리뷰어에게 내 설명은 넘기지 마. 지적은 확인됨, 불확실, 오탐으로 나눠 근거를 붙여 줘.
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>/retro 이번 세션을 돌아보고, AGENTS.md 규칙, hook, skill에서 무엇을 고치면 다음 기능 테스트가 빨라질지 제안해 줘.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>/handoff 내일은 Cloud WAN 리허설을 이어서 해
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="_7">두 트랙의 아키텍처<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Track A — NLB mTLS 테스트 환경</label><label for="__tabbed_2_2">Track B — TGW에서 Cloud WAN으로</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p><img alt="NLB mTLS 테스트 환경" src="../static/images/arch-nlb-mtls-test.svg" /></p>

@@ -1292,8 +1292,14 @@ claude<span class="w"> </span>plugin<span class="w"> </span>install<span class="
 <tr>
 <td>3 Build</td>
 <td><code>wizard</code></td>
-<td>사람만 할 수 있는 수작업 단계를 하나씩 안내하는 대화형 bash 스크립트를 만듭니다. 콘솔 클릭, 자격 증명 입력, 되돌릴 수 없는 전환 작업 같은 것입니다.</td>
-<td>Workshop Studio 이벤트 준비, Bedrock 모델 사용 신청 안내</td>
+<td>사람만 할 수 있는 단계를 하나씩 안내하는 대화형 bash 스크립트를 만듭니다. 원문이 드는 쓰임새는 인프라 프로비저닝, 자격 증명 설정, 처음 보는 콘솔 따라가기, 일회성 마이그레이션이나 전환(cutover)입니다. agent가 직접 할 수 있는 단계에는 쓰지 않습니다.</td>
+<td>네트워크에서는 Direct Connect LOA 처리, 다른 계정에서 RAM 공유 수락, 온프레미스 라우터 설정, TGW → Cloud WAN 전환(Lab 5-4), Workshop Studio 이벤트 준비</td>
+</tr>
+<tr>
+<td>3 Build</td>
+<td><code>/implement</code></td>
+<td>스펙이나 티켓을 받아 <code>tdd</code>로 구현하고 <code>code-review</code>로 리뷰한 뒤 커밋합니다. 타입 검사와 테스트 스위트를 전제로 합니다.</td>
+<td>IaC 작성에는 원칙만 가져옵니다: <code>test-plan.md</code>를 스펙으로, <code>cfn-lint</code>·<code>local-rehearsal.sh</code>를 테스트로</td>
 </tr>
 <tr>
 <td>5 Troubleshoot</td>
