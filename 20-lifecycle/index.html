@@ -1461,6 +1461,54 @@
 <p class="admonition-title">맞지 않는 단계에 억지로 끼우지 않습니다</p>
 <p>skill도 결국 프롬프트입니다. 단계와 맞지 않는 skill을 쓰면 엉뚱한 절차를 따르게 됩니다. 예를 들어 <code>/tdd</code>는 코드를 고쳐 가며 테스트를 통과시키는 절차라서, 고칠 코드가 없는 네트워크 테스트에서는 절차의 절반이 헛돕니다. 맞지 않는 단계는 원칙만 가져오거나, Lab 6처럼 그 단계에 맞는 skill을 직접 만듭니다.</p>
 </div>
+<details class="note">
+<summary>/grill-me는 단계마다 반복해서 써도 되나요?</summary>
+<p>됩니다. 다만 <strong>결정해야 할 것이 열려 있는 단계에서만</strong> 씁니다. <code>grilling</code>은 결정을 묻는 인터뷰입니다. 사실을 찾는 일은 사용자에게 묻지 않고 sub-agent를 보내 직접 합니다.</p>
+<table>
+<thead>
+<tr>
+<th>단계</th>
+<th>grill</th>
+<th>이유</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 목표 · 2 설계</td>
+<td>◎</td>
+<td>목적, 범위, 성공 기준, 넣고 뺄 케이스, 비용은 사람이 정할 결정입니다.</td>
+</tr>
+<tr>
+<td>3 구축</td>
+<td>○ IaC를 쓰기 전</td>
+<td>비교 리스너, 인증서 체계처럼 되돌리기 비싼 설계 결정이 남았을 때만</td>
+</tr>
+<tr>
+<td>6 문서화</td>
+<td>○</td>
+<td>대상 수준, 모듈 구성, 시간 배분(Lab 5 스토리보드)</td>
+</tr>
+<tr>
+<td>8 자산화</td>
+<td>△</td>
+<td>skill로 만들 범위를 정할 때만. 돌아보기는 <code>/retro</code></td>
+</tr>
+<tr>
+<td>4 검증 · 5 디버깅 · 7 리뷰</td>
+<td>✕</td>
+<td>사실을 확인하는 단계입니다. 디버깅은 <code>diagnosing-bugs</code>를 씁니다. 고칠 방법이 여러 개라 하나를 골라야 할 때만 짧게 씁니다.</td>
+</tr>
+</tbody>
+</table>
+<p>반복해서 쓸 때 지킬 것:</p>
+<ul>
+<li><strong>결과를 파일로 남깁니다.</strong> <code>/grill-me</code>는 대화 안에서만 기억합니다. 끝날 때마다 <code>goal.md</code>, <code>test-plan.md</code>에 쓰게 하고, 다음 grill은 그 파일을 읽고 시작하게 합니다. 그러지 않으면 <code>/clear</code> 뒤에 같은 질문을 다시 받습니다.</li>
+<li><strong>오래 이어지는 저장소에서는 <code>/grill-with-docs</code>를 씁니다.</strong> 정한 용어와 결정이 <code>GLOSSARY.md</code>와 ADR에 남아, 다음 grill이 이미 정한 것을 건너뜁니다.</li>
+<li><strong>grill이 나에게 사실을 물으면 바로잡습니다.</strong> 원문에서는 grill이 결정에 필요한 사실을 sub-agent로 직접 찾습니다. "NLB가 passthrough를 지원하나요?"처럼 찾아보면 알 수 있는 질문을 나에게 하면, "직접 찾아봐"라고 답합니다. 조사할 양이 많으면 <code>/research</code>를 먼저 돌립니다.</li>
+<li><strong>끝내는 기준을 압니다.</strong> 원문의 종료 조건은 모든 결정 가지를 다 돌고, 내가 "이해가 맞다"고 확인하는 것입니다. 확인하기 전에는 Claude가 실행으로 넘어가지 않습니다. 시간이 부족하면 이번 단계에 필요한 가지까지만 정하고, 남은 결정은 파일에 "미결정"으로 적은 뒤 확인해 줍니다. 라운드마다 시간과 토큰이 들기 때문입니다.</li>
+</ul>
+<p>이 워크숍에서 쓰는 실무 기준입니다(원문의 규칙은 아닙니다): <strong>정해야 할 결정이 여러 개 열려 있거나, 틀리면 되돌리기 비쌀 때</strong> grill을 씁니다. 결정이 하나뿐이고 가벼우면 그냥 물어봐도 충분합니다.</p>
+</details>
 <h3 id="_4">세 가지 원칙과의 대응<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
