@@ -1,1 +1,10 @@
-.md-typeset img[src$=".svg"], .md-typeset img[src$=".png"] { background: #fff; border-radius: 6px; }
+
+/* larger body text (Material default is .8rem) */
+.md-typeset { font-size: .95rem; line-height: 1.75; }
+.md-typeset table:not([class]) { font-size: .85rem; }
+.md-typeset code, .md-typeset pre { font-size: .85em; }
+.md-typeset .admonition, .md-typeset details { font-size: .85rem; }
+.md-nav { font-size: .8rem; }
+/* wider page so figures shrink less */
+.md-grid { max-width: 1600px; }
+.md-typeset img[src$=".svg"], .md-typeset img[src$=".png"] { width: 100%; height: auto; background: #fff; border-radius: 6px; }
