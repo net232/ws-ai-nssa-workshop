@@ -1445,6 +1445,7 @@ test-matrix.sh를 NLB_DNS=127.0.0.1로 돌려 줘. 실행해서 결과를 보여
 - EC2 3대(AL2023 arm64, t4g.micro, IMDSv2): 대상 2대는 8080 HTTP이고 SSM 권한만 줘.
   클라이언트 1대는 역할을 따로 만들어 artifact 버킷 clients/만 읽게 하고(GetObject + prefix 조건 ListBucket),
   부팅 시 /opt/lab/certs에 받아 키는 600으로. 다운로드 실패가 숨겨지지 않게 cfn-signal + CreationPolicy로 알려.
+  마지막에 /etc/profile.d/lab.sh를 만들어 NLB_DNS(NLB DNS 이름), SERVER_NAME=mtls.lab.internal, CERTS=/opt/lab/certs를 export해 (Lab 3 스크립트가 읽음). 성공 신호는 이 파일까지 쓴 다음에 보내.
 - SG: 클라이언트 → NLB 443/8443, NLB → 대상 8080만
 - 모든 리소스 태그 Project=ws-ai-nssa
 - 속성 이름은 research.md와 CloudFormation 문서로 확인한 것만 써. identity filter는 템플릿에 넣지 마(Lab 3에서 CLI로).
@@ -1542,6 +1543,7 @@ aws<span class="w"> </span>elbv2<span class="w"> </span>describe-listeners<span 
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled=""><span class="task-list-indicator"></span></label> 443은 <code>"Mode": "verify"</code>, 8443은 <code>MutualAuthentication</code>이 없거나 <code>"Mode": "off"</code>.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled=""><span class="task-list-indicator"></span></label> trust store <code>Status</code>가 <code>ACTIVE</code>, CA 1개, revocation 1개.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled=""><span class="task-list-indicator"></span></label> 대상 2개 모두 <code>healthy</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled=""><span class="task-list-indicator"></span></label> 템플릿의 클라이언트 user data가 <code>/etc/profile.d/lab.sh</code>(<code>NLB_DNS</code>, <code>SERVER_NAME</code>, <code>CERTS</code>)를 쓰고 <strong>그다음에</strong> 성공 신호를 보낸다. Lab 3의 모든 원격 명령이 이 파일을 읽습니다.</li>
 </ul>
 <p>리허설 결과: 443은 <code>Mode: verify</code>, <code>IgnoreClientCertificateExpiry: false</code>, <code>AdvertiseTrustStoreCaNames: off</code>, <code>TrustStoreAssociationStatus: active</code>, <code>ClientCertificateIdentityFilters: []</code>였고, 8443은 <code>{"Mode": "off"}</code>였습니다. trust store는 <code>ACTIVE</code>, CA 1개, revocation 1개(1건)였습니다. 대상 하나는 스택 완료 직후 <code>initial</code>이었다가 30초 안에 <code>healthy</code>가 되었습니다.</p>
 <h2 id="_3">정답 예시<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>

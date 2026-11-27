@@ -1520,7 +1520,8 @@ aws<span class="w"> </span>elbv2<span class="w"> </span>modify-listener<span cla
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled=""><span class="task-list-indicator"></span></label> <code>results.md</code>의 표 두 행을 골라, <code>~/ws-lab/logs/mtls-log-summary.md</code>와 test-matrix 원본 출력에서 같은 값을 직접 찾았다.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled=""><span class="task-list-indicator"></span></label> "모두 성공" 같은 결론 문장 옆에 PASS/FAIL 개수가 있다.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled=""><span class="task-list-indicator"></span></label> 기대와 다른 결과가 0개라면, 일부러 하나를 틀리게 만들어(예: test-matrix.sh 기대값 하나 수정) 표가 ❌를 정말 표시하는지 확인했다. <strong>실패를 잡지 못하는 테스트는 테스트가 아닙니다.</strong></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled=""><span class="task-list-indicator"></span></label> 기대와 다른 결과가 0개라면, 일부러 하나를 틀리게 만들어(먼저 <code>cp scripts/test-matrix.sh scripts/test-matrix.sh.bak</code>로 백업한 뒤 기대값 하나 수정) 표가 ❌를 정말 표시하는지 확인했다. <strong>실패를 잡지 못하는 테스트는 테스트가 아닙니다.</strong></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled=""><span class="task-list-indicator"></span></label> 위 확인 뒤 <code>mv scripts/test-matrix.sh.bak scripts/test-matrix.sh</code>로 <strong>원래대로 되돌리고</strong>, <code>PHASE=filter</code> 매트릭스를 다시 돌려 <code>FAIL 0</code>을 확인했다. Lab 4는 이 상태에서 시작합니다.</li>
 </ul>
 <h2 id="_4">정답 예시<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
 <ul>

@@ -1170,7 +1170,7 @@ claude
 </code></pre></div>
 <p><code>ws-ai-nssa-ide</code> 스택의 리소스만 남았다면 정리가 끝난 것입니다.</p>
 <h2 id="4-workshop-ide">4. Workshop IDE 삭제 (내 계정에서 진행한 경우)<a class="headerlink" href="#4-workshop-ide" title="Permanent link">¶</a></h2>
-<p>작업 폴더에서 남겨 둘 파일(<code>research.md</code>, <code>test-plan.md</code>, 직접 만든 skill 등)을 먼저 내려받거나 git 저장소에 push합니다. 그다음 CloudFormation 콘솔에서 <code>ws-ai-nssa-ide</code> 스택을 삭제합니다. AWS 이벤트 계정이라면 이벤트가 끝날 때 계정이 회수되므로 따로 삭제하지 않아도 됩니다.</p>
+<p>작업 폴더에서 남겨 둘 파일(<code>goal.md</code>, <code>research.md</code>, <code>test-plan.md</code>, <code>results.md</code>, 직접 만든 skill 등)을 먼저 내려받거나 git 저장소에 push합니다. <code>/handoff</code>로 만든 인수인계 문서는 작업 폴더가 아니라 임시 폴더(<code>$TMPDIR</code> 또는 <code>/tmp</code>)에 있으므로 따로 챙깁니다. 그다음 CloudFormation 콘솔에서 <code>ws-ai-nssa-ide</code> 스택을 삭제합니다. AWS 이벤트 계정이라면 이벤트가 끝날 때 계정이 회수되므로 따로 삭제하지 않아도 됩니다.</p>
 <h2 id="_2">마치며<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
 <p>오늘 실습한 흐름을 다시 보면 다음과 같습니다.</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../static/images/workshop-flow.svg" data-desc-position="bottom"><img alt="워크숍 전체 흐름" src="../static/images/workshop-flow.svg"></a></p>

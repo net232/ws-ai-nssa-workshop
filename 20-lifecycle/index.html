@@ -1313,8 +1313,8 @@
 <td>2</td>
 <td>Plan 설계</td>
 <td>테스트 매트릭스나 워크숍 스토리보드 초안, 성공 기준, 비용 추정</td>
-<td>시나리오와 비용 승인</td>
-<td>plan mode, skill (<code>net-test-plan</code>)<br>◎ <code>/grill-me</code>, <code>/to-questionnaire</code></td>
+<td>시나리오와 비용 승인, 스펙 확정</td>
+<td>plan mode, skill (<code>net-test-plan</code>)<br>◎ <code>/grill-me</code> → <code>/to-spec</code> → <code>/to-tickets</code>, <code>/to-questionnaire</code></td>
 <td>Lab 1, 5</td>
 </tr>
 <tr>
@@ -1336,7 +1336,7 @@
 <tr>
 <td>5</td>
 <td>Troubleshoot 디버깅</td>
-<td>가설을 세우고 <code>describe-*</code>·로그·Reachability Analyzer로 근거 수집</td>
+<td>실패를 판정하는 재현 명령을 먼저 만들고, 가설마다 <code>describe-*</code>·로그·Reachability Analyzer로 근거 수집</td>
 <td>근본 원인 확정, 수정 승인</td>
 <td>plan mode, 읽기 전용 권한<br>◎ <code>diagnosing-bugs</code></td>
 <td>Lab 4</td>
@@ -1370,7 +1370,7 @@
 <p>표의 "Claude Code 기능 · Matt Pocock skill" 열 둘째 줄은 <a href="../10-claude-code-basics/16-mattpocock-skills/">1-6</a>에서 써 본 skill이 어느 단계에 들어가는지를 보여 줍니다. ◎는 그대로 적용, △는 원칙만 가져옴, ×는 대상이 다름을 뜻합니다. 아래 "Matt Pocock skills와 연결"에서 자세히 다룹니다.</p>
 <h2 id="_2">세 가지 원칙<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
 <h3 id="1">1. 단계마다 산출물을 파일로 남긴다<a class="headerlink" href="#1" title="Permanent link">¶</a></h3>
-<p><code>goal.md</code> → <code>research.md</code> → <code>test-plan.md</code> → <code>*.yaml</code> → <code>results.md</code> → <code>rca.md</code> 순서로 파일이 쌓입니다. 다음 단계의 Claude는 대화 기록이 아니라 이 파일을 읽고 작업합니다. 그래서 <code>/clear</code>로 컨텍스트를 비워도 작업이 이어지고, 동료에게 넘기기도 쉽습니다.</p>
+<p><code>goal.md</code> → <code>research.md</code> → <code>test-plan.md</code>(또는 스펙 이슈) → <code>*.yaml</code> → <code>results.md</code> → <code>rca.md</code> 순서로 파일이 쌓입니다. 다음 단계의 Claude는 대화 기록이 아니라 이 파일을 읽고 작업합니다. 그래서 <code>/clear</code>로 컨텍스트를 비워도 작업이 이어지고, 동료에게 넘기기도 쉽습니다.</p>
 <h3 id="2_1">2. 다음 단계로 넘어가기 전에 검증한다<a class="headerlink" href="#2_1" title="Permanent link">¶</a></h3>
 <table>
 <thead>
@@ -1386,7 +1386,7 @@
 </tr>
 <tr>
 <td>Plan</td>
-<td>각 테스트 케이스에 <strong>기대 결과</strong>가 미리 적혀 있는가?</td>
+<td>각 테스트 케이스에 <strong>기대 결과</strong>가 미리 적혀 있는가? 판정할 관찰 지점(seam)이 정해져 있는가?</td>
 </tr>
 <tr>
 <td>Build</td>
@@ -1411,7 +1411,7 @@
 <h2 id="matt-pocock-skills">Matt Pocock skills와 연결<a class="headerlink" href="#matt-pocock-skills" title="Permanent link">¶</a></h2>
 <p>1-6에서 써 본 Matt Pocock skills는 소프트웨어 개발용으로 만들어졌지만, 흐름이 이 라이프사이클과 거의 같습니다. Matt Pocock의 기본 흐름은 아이디어 검증(grill) → 스펙 → 티켓 → 구현(TDD) → 리뷰 → 회고입니다. 그렇다고 모든 단계에 그대로 들어맞지는 않습니다. 단계마다 얼마나 맞는지 구분해서 써야 합니다.</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../static/images/lifecycle-mattpocock.svg" data-desc-position="bottom"><img alt="라이프사이클 단계별 Matt Pocock skills" src="../static/images/lifecycle-mattpocock.svg"></a></p>
-<p>흐름은 한 방향으로만 가지 않고 앞 단계로 돌아옵니다. <strong>목표를 대략 정하고(<code>/grill-me</code>) → 그 범위로 조사하고(<code>/research</code>) → 조사 결과로 계획을 다시 검증합니다(<code>/grill-me</code>).</strong> <code>grilling</code> skill도 같은 방식으로 일합니다. 결정은 사람에게 묻고, 결정에 필요한 사실은 sub-agent를 보내 직접 찾아옵니다.</p>
+<p>흐름은 한 방향으로만 가지 않고 앞 단계로 돌아옵니다. <strong>목표를 대략 정하고(<code>/grill-me</code>) → 그 범위로 조사하고(<code>/research</code>) → 조사 결과로 계획을 다시 검증하고(<code>/grill-me</code>) → 합의한 결정을 스펙으로 굳힌 뒤(<code>/to-spec</code>) → 한 번에 끝낼 수 있는 작업 단위로 나눕니다(<code>/to-tickets</code>).</strong> 이후 단계는 대화가 아니라 그 스펙과 티켓을 읽고 일합니다. <code>grilling</code> skill도 같은 방식으로 일합니다. 결정은 사람에게 묻고, 결정에 필요한 사실은 sub-agent를 보내 직접 찾아옵니다.</p>
 <h3 id="_3">단계별 적합도<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
 <table>
 <thead>
@@ -1429,13 +1429,13 @@
 </tr>
 <tr>
 <td>◎</td>
-<td>2 Plan — <code>/grill-me</code>, <code>/to-questionnaire</code></td>
-<td>1단계에서 정한 목표로 이번에는 테스트 계획을 검증합니다. 결정은 사람에게 묻고 사실은 직접 찾습니다. 표의 "사람이 판단할 일" 열을 질문으로 바꿔 주는 셈입니다. 서비스팀이나 고객만 답할 수 있는 결정은 <code>/to-questionnaire</code>로 질문지를 만듭니다.</td>
+<td>2 Plan — <code>/grill-me</code> → <code>/to-spec</code> → <code>/to-tickets</code>, <code>/to-questionnaire</code></td>
+<td>Plan은 <strong>결정하고(grill) → 굳히고(spec) → 나누는(tickets)</strong> 단계입니다. 먼저 1단계 목표와 조사 결과로 계획 초안을 <code>/grill-me</code>로 검증합니다. 표의 "사람이 판단할 일" 열을 질문으로 바꿔 주는 셈입니다. 서비스팀이나 고객만 답할 수 있는 결정은 <code>/to-questionnaire</code>로 질문지를 만듭니다. 결정이 끝나면 <code>/to-spec</code>이 그 대화를 <strong>다시 묻지 않고</strong> 스펙 한 편으로 정리해 이슈 트래커에 올립니다. 스펙의 "Testing Decisions"에는 <strong>어디서 관찰해 판정할지(seam)</strong>를 적습니다. 원문은 가능한 한 높은 seam 하나를 권하는데, 네트워크 테스트로 옮기면 개별 API 응답이 아니라 "클라이언트에서 NLB를 거친 curl 결과와 access log"입니다. 워크숍처럼 작업이 크면 <code>/to-tickets</code>로 나눕니다. 티켓은 층(IaC만, 페이지만)이 아니라 <strong>끝까지 확인되는 세로 조각</strong>이어야 하므로, 워크숍에서는 "모듈 하나(IaC + 페이지 + 구성도 + 확인 명령)"가 티켓 하나입니다. 단일 기능 테스트(Lab 1)는 <code>test-plan.md</code>가 스펙 역할을 하므로 이슈 트래커 없이 진행해도 됩니다.</td>
 </tr>
 <tr>
 <td>◎</td>
 <td>5 Troubleshoot — <code>diagnosing-bugs</code></td>
-<td>가설보다 <strong>실패하는 명령 하나</strong>를 먼저 만듭니다. Lab 4에서는 매트릭스의 한 줄(openssl 명령)이 그 명령입니다. 원인을 고친 뒤에도 같은 명령으로 확인합니다.</td>
+<td>가설보다 <strong>실패를 판정하는 명령 하나</strong>를 먼저 만듭니다. 그냥 연결해 보는 명령이 아니라, 정상이면 PASS, 아니면 FAIL을 내고 0이 아닌 값으로 끝나는 명령이어야 반복해서 쓸 수 있습니다. Lab 4에서는 정상 인증서로 HTTP 200을 확인하는 <code>curl</code> 한 줄이 그 명령입니다. 원인을 고친 뒤에도 같은 명령으로 확인합니다.</td>
 </tr>
 <tr>
 <td>◎</td>
@@ -1455,7 +1455,7 @@
 <tr>
 <td>△ 원칙만</td>
 <td>4 Verify — <code>/tdd</code></td>
-<td><code>/tdd</code>는 테스트할 경계(공개 인터페이스)를 사용자와 먼저 정하고, 코드를 고쳐 가며 실패 → 통과를 반복하는 절차입니다. 네트워크 기능 테스트에는 고쳐 나갈 애플리케이션 코드가 없으므로 절차를 그대로 쓰지 않습니다. 대신 "테스트할 경계를 먼저 합의하고, 기대 결과를 먼저 적고, 실패하는 것을 본 뒤 통과시킨다"는 원칙만 가져옵니다. 이 워크숍에서는 테스트 계획서의 기대값과 배포 전 <code>local-rehearsal.sh</code>가 그 역할을 합니다.</td>
+<td><code>/tdd</code>는 테스트할 경계(공개 인터페이스)를 사용자와 먼저 정하고, 코드를 고쳐 가며 실패 → 통과를 반복하는 절차입니다. 네트워크 기능 테스트에는 고쳐 나갈 애플리케이션 코드가 없으므로 절차를 그대로 쓰지 않습니다. 대신 "테스트할 경계를 먼저 합의하고, 기대 결과를 먼저 적고, 실패하는 것을 본 뒤 통과시킨다"는 원칙만 가져옵니다. 이 워크숍에서는 테스트 계획서의 기대값과 배포 전 <code>local-rehearsal.sh</code>가 그 역할을 합니다. 단, Build에서 <strong>실제로 코드를 짤 때</strong>(Lab 5-2의 policy 검사기 <code>check_policy.py</code>, 로그 파서)는 <code>/tdd</code>를 그대로 씁니다.</td>
 </tr>
 <tr>
 <td>× 대상이 다름</td>
@@ -1605,10 +1605,16 @@
 <p>초안을 씁니다.</p>
 <div class="highlight"><pre><span></span><code>/net-test-plan goal.md와 research.md를 근거로 테스트 계획서를 test-plan.md로 만들어 줘.
 </code></pre></div>
-<p>계획을 검증합니다. <code>/grill-me</code>와 <code>/to-questionnaire</code>는 사용자만 호출할 수 있는 skill이라, Claude에게 "이어서 실행해"라고 맡길 수 없습니다. 하나씩 직접 입력합니다.</p>
+<p>계획을 검증합니다. <code>/grill-me</code>, <code>/to-questionnaire</code>, <code>/to-spec</code>, <code>/to-tickets</code>는 모두 사용자만 호출할 수 있는 skill이라, Claude에게 "이어서 실행해"라고 맡길 수 없습니다. 하나씩 직접 입력합니다.</p>
 <div class="highlight"><pre><span></span><code>/grill-me test-plan.md를 검증해 줘. 빠진 실패 경로, 기대 결과가 애매한 케이스, 비용을 위주로.
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>/to-questionnaire test-plan.md에서 서비스팀만 답할 수 있는 질문을 질문지로 만들어 줘.
+</code></pre></div>
+<p>결정이 끝나면 같은 세션에서 바로 스펙으로 굳힙니다. <code>/to-spec</code>은 지금까지의 대화를 정리하는 skill이므로 <code>/clear</code> 전에 실행합니다. 이슈 트래커가 필요하므로 저장소에 <code>/setup-matt-pocock-skills</code>를 먼저 한 번 실행해 둡니다(GitHub 저장소가 없으면 local markdown을 고릅니다).</p>
+<div class="highlight"><pre><span></span><code>/to-spec 지금까지 정한 NLB mTLS 테스트 결정을 스펙으로 정리해 줘. seam은 클라이언트 curl 결과와 NLB access log 하나로 해.
+</code></pre></div>
+<p>작업이 한 세션에 다 안 들어갈 만큼 크면 티켓으로 나눕니다. 워크숍이라면 모듈 하나가 티켓 하나입니다.</p>
+<div class="highlight"><pre><span></span><code>/to-tickets 방금 만든 스펙을 티켓으로 나눠 줘. 각 티켓은 배포부터 확인 명령까지 끝나는 단위로.
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -1624,7 +1630,7 @@
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>diagnosing-bugs 방식으로 진단해 줘. 먼저 이 문제가 재현되는 명령 하나(openssl s_client 한 줄)를 만들어 실패하는 것을 보여 줘. 그다음 describe 명령, target health, access log로 가설을 하나씩 확인하고, 수정은 내 승인 뒤에. 고친 뒤 같은 명령으로 다시 확인해서 rca.md에 정리해.
+<div class="highlight"><pre><span></span><code>diagnosing-bugs 방식으로 진단해 줘. 먼저 정상 인증서로 HTTP 200이면 PASS, 아니면 FAIL을 출력하고 0이 아닌 값으로 끝나는 재현 명령 하나를 만들어 실패하는 것을 보여 줘. 그다음 describe 명령, target health, access log로 가설을 하나씩 확인하고, 수정은 내 승인 뒤에. 고친 뒤 같은 명령으로 다시 확인해서 rca.md에 정리해.
 </code></pre></div>
 </div>
 <div class="tabbed-block">
