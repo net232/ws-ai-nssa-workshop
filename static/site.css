@@ -5,6 +5,12 @@
 .md-typeset code, .md-typeset pre { font-size: .85em; }
 .md-typeset .admonition, .md-typeset details { font-size: .85rem; }
 .md-nav { font-size: .8rem; }
+/* nav: every top-level entry bold (not only the ones with sub-pages), children normal */
+.md-nav--primary > .md-nav__list > .md-nav__item > .md-nav__link,
+.md-nav--primary > .md-nav__list > .md-nav__item > .md-nav__link > a { font-weight: 700; }
+.md-nav--primary > .md-nav__list > .md-nav__item { margin-top: .9em; }
+.md-nav--primary > .md-nav__list > .md-nav__item--section { margin: .9em 0 0; }
+.md-nav--primary .md-nav__item--section > .md-nav .md-nav__link { font-weight: 400; }
 /* wider page so figures shrink less */
 .md-grid { max-width: 1600px; }
 .md-typeset img[src$=".svg"], .md-typeset img[src$=".png"] { width: 100%; height: auto; background: #fff; border-radius: 6px; }
