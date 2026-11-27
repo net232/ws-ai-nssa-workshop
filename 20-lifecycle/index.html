@@ -1267,8 +1267,7 @@
 <th>단계</th>
 <th>AI에게 맡기는 일</th>
 <th>사람이 판단할 일</th>
-<th>Claude Code 기능</th>
-<th>Matt Pocock skill</th>
+<th>Claude Code 기능 · Matt Pocock skill</th>
 <th>Lab</th>
 </tr>
 </thead>
@@ -1278,8 +1277,7 @@
 <td>Discover 조사</td>
 <td>What's New, 사용자 가이드, API·CLI·CloudFormation 지원 범위, 리전, 쿼터 조사</td>
 <td>출처가 공식 문서인지 확인하고 테스트 범위를 정함</td>
-<td>AWS MCP 서버 (문서 검색)</td>
-<td>◎ <code>/research</code></td>
+<td>AWS MCP 서버 (문서 검색)<br>◎ <code>/research</code></td>
 <td>Lab 1</td>
 </tr>
 <tr>
@@ -1287,8 +1285,7 @@
 <td>Plan 설계</td>
 <td>테스트 매트릭스나 워크숍 스토리보드 초안, 성공 기준, 비용 추정</td>
 <td>시나리오와 비용 승인</td>
-<td>plan mode, skill (<code>net-test-plan</code>)</td>
-<td>◎ <code>/grill-me</code>, <code>/to-questionnaire</code></td>
+<td>plan mode, skill (<code>net-test-plan</code>)<br>◎ <code>/grill-me</code>, <code>/to-questionnaire</code></td>
 <td>Lab 1, 5</td>
 </tr>
 <tr>
@@ -1296,8 +1293,7 @@
 <td>Build 구축</td>
 <td>CloudFormation, 인증서·테스트 스크립트 생성</td>
 <td>보안 그룹·IAM·비용 검토</td>
-<td><code>cfn-lint</code>, 권한 규칙</td>
-<td>△ <code>/prototype</code>, <code>wizard</code></td>
+<td><code>cfn-lint</code>, 권한 규칙<br>△ <code>/prototype</code>, <code>wizard</code></td>
 <td>Lab 2, 5</td>
 </tr>
 <tr>
@@ -1305,8 +1301,7 @@
 <td>Verify 검증</td>
 <td>배포, 테스트 실행, 증적(명령 출력·로그) 수집, 결과표 작성</td>
 <td>기대값과 실제값이 다를 때 원인이 테스트인지 기능인지 판단</td>
-<td>Bash, SSM, 백그라운드 작업</td>
-<td>△ <code>/tdd</code>(원칙만)</td>
+<td>Bash, SSM, 백그라운드 작업<br>△ <code>/tdd</code>(원칙만)</td>
 <td>Lab 3</td>
 </tr>
 <tr>
@@ -1314,8 +1309,7 @@
 <td>Troubleshoot 디버깅</td>
 <td>가설을 세우고 <code>describe-*</code>·로그·Reachability Analyzer로 근거 수집</td>
 <td>근본 원인 확정, 수정 승인</td>
-<td>plan mode, 읽기 전용 권한</td>
-<td>◎ <code>diagnosing-bugs</code></td>
+<td>plan mode, 읽기 전용 권한<br>◎ <code>diagnosing-bugs</code></td>
 <td>Lab 4</td>
 </tr>
 <tr>
@@ -1323,8 +1317,7 @@
 <td>Document 문서화</td>
 <td>Workshop Studio 페이지, 구성도, 번역</td>
 <td>교육 흐름과 난이도 조정</td>
-<td>skill (구성도, 번역)</td>
-<td>× (구성도·번역 skill로 채움)</td>
+<td>skill (구성도, 번역)<br>× (구성도·번역 skill로 채움)</td>
 <td>Lab 5</td>
 </tr>
 <tr>
@@ -1332,8 +1325,7 @@
 <td>Review 리뷰</td>
 <td>작성자와 분리된 리뷰어가 교차 검토</td>
 <td>지적 사항을 실제 코드와 대조</td>
-<td>subagent, 다른 모델(Codex CLI)</td>
-<td>◎ <code>/mattpocock-skills:code-review</code></td>
+<td>subagent, 다른 모델(Codex CLI)<br>◎ <code>/mattpocock-skills:code-review</code></td>
 <td>Lab 6</td>
 </tr>
 <tr>
@@ -1341,13 +1333,12 @@
 <td>Package 자산화·정리</td>
 <td>반복 절차를 skill로 만들기, 리소스 삭제</td>
 <td>재사용 범위, 남은 비용 확인</td>
-<td>skill, hook</td>
-<td>◎ <code>/retro</code>, <code>/handoff</code></td>
+<td>skill, hook<br>◎ <code>/retro</code>, <code>/handoff</code></td>
 <td>Lab 6, 정리</td>
 </tr>
 </tbody>
 </table>
-<p>표의 Matt Pocock skill 열은 <a href="../10-claude-code-basics/16-mattpocock-skills/">1-6</a>에서 써 본 skill이 어느 단계에 들어가는지를 보여 줍니다. ◎는 그대로 적용, △는 원칙만 가져옴, ×는 대상이 다름을 뜻합니다. 아래 "Matt Pocock skills와 연결"에서 자세히 다룹니다.</p>
+<p>표의 "Claude Code 기능 · Matt Pocock skill" 열 둘째 줄은 <a href="../10-claude-code-basics/16-mattpocock-skills/">1-6</a>에서 써 본 skill이 어느 단계에 들어가는지를 보여 줍니다. ◎는 그대로 적용, △는 원칙만 가져옴, ×는 대상이 다름을 뜻합니다. 아래 "Matt Pocock skills와 연결"에서 자세히 다룹니다.</p>
 <h2 id="_2">세 가지 원칙<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <h3 id="1">1. 단계마다 산출물을 파일로 남긴다<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
 <p><code>research.md</code> → <code>test-plan.md</code> → <code>*.yaml</code> → <code>results.md</code> → <code>rca.md</code> 순서로 파일이 쌓입니다. 다음 단계의 Claude는 대화 기록이 아니라 이 파일을 읽고 작업합니다. 그래서 <code>/clear</code>로 컨텍스트를 비워도 작업이 이어지고, 동료에게 넘기기도 쉽습니다.</p>
